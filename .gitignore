@@ -1,0 +1,24 @@
+# Vite и зависимости
+node_modules
+dist
+.temp
+.cache
+
+# Логи и системные файлы
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# Настройки IDE
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment
+.env
+.env.local
