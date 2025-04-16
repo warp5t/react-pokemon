@@ -10,4 +10,4 @@ export const pokemon: Array<PokemonData> = [
   {"name": "wartortle"},
   {"name": "blastoise"},
   {"name": "caterpie"}
-]
+];
