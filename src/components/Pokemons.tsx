@@ -39,3 +39,15 @@ const PokeCard = ({name, number}: PokeCardProps) => {
     </div>
   )
 }
+
+export const PaginationPoke = () => {
+  return (
+    <div className={style.pokemons__pagination}>
+      <div className={style.pokemons__paginationWrap}>
+      <button className={style.pokemons__paginationBtn}>Previous</button>
+      <div className={style.pokemons__paginationPage}>1</div>
+      <button className={style.pokemons__paginationBtn}>Next</button>
+      </div>
+    </div>
+  )
+}
