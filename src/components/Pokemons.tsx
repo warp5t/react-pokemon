@@ -1,5 +1,6 @@
 import { pokemon } from "../data/pokemonData";
 import { PokeCardProps } from "../interfaces/Pokemon";
+import style from '../styles/pokemons/Pokemons.module.css'
 import favorites from "../assets/icon/star.png";
 import comparison from "../assets/icon/arrows.png";
 
@@ -9,7 +10,7 @@ const capitalize = (str: string) => {
 
 export const PokemonsContainer = () => {
   return (
-    <div>
+    <div className={style.pokemons}>
     {pokemon.map((poke, index) => (
       <PokeCard
         key={poke.name}
@@ -22,10 +23,12 @@ export const PokemonsContainer = () => {
 }
 const PokeCard = ({name, number}: PokeCardProps) => {
   return (
-    <div onClick={() => {console.log(name)}}>
-    <h3>{name}</h3>
-    <div>#{number}</div>
-    <div>
+    <div className={style.pokemons__item} onClick={() => {console.log(name)}}>
+      <div className={style.pokemons__wrapTitle}>
+        <h3>{name}</h3>
+        <div>#{number}</div>
+      </div>
+    <div className={style.pokemons__wrapButton}>
       <button>
         <img src={favorites} alt="favorites" />
       </button>
