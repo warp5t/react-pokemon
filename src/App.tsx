@@ -1,10 +1,14 @@
 import './App.css'
+import {Header} from './components/Header'
+import { PokemonsContainer,PaginationPoke } from './components/Pokemons'
 
 function App() {
   return (
-    <>
-      App comoponent
-    </>
+    <div className='wrapRoot'>
+    <Header />
+    <PokemonsContainer />
+    <PaginationPoke />
+    </div>
   )
 }
 
