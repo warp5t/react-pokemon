@@ -6,6 +6,7 @@ export interface PokeCardProps {
   number: string;
 }
 export interface PokeStat {
+  number: number,
   name: string,
   height: number,
   weight: number,
