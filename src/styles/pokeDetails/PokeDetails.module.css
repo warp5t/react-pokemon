@@ -1,0 +1,22 @@
+.pokeStat {
+  display: flex;
+  flex-direction: column;
+}
+
+.pokeStat__title {
+  font-size: 30px;
+}
+
+.pokeStat__subwrap {
+  display: flex;
+}
+.pokeStat__detail {
+  font-size: 15px;
+}
+.pokeStat__wrapImg {
+  border: 2px solid whitesmoke;
+  border-radius: 5px;
+}
+.pokeStat__img {
+  display: inline-block;
+}
