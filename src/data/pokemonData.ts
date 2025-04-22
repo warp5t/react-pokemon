@@ -1,15 +1,20 @@
-import { PokemonData,PokeStat } from "../interfaces/Pokemon"
-export const pokemon: Array<PokemonData> = [
-  {"name": "bulbasaur"},
-  {"name": "ivysaur"},
-  {"name": "venusaur"},
-  {"name": "charmander"},
-  {"name": "charmeleon"},
-  {"name": "charizard"},
-  {"name": "squirtle"},
-  {"name": "wartortle"},
-  {"name": "blastoise"},
-  {"name": "caterpie"}
+import { PokeStat } from "../interfaces/Pokemon"
+
+export const pokeFavorite: Array<PokeStat> = [
+  {
+    number: 1,
+    name: "ivysaur",
+    height: 1.0,
+    weight: 13.0,
+    image: "https://img.pokemondb.net/artwork/avif/ivysaur.avif"
+  },
+  {
+    number: 2,
+    name: "venusaur",
+    height: 2.0,
+    weight: 100.0,
+    image: "https://img.pokemondb.net/artwork/avif/venusaur.avif"
+  },
 ];
 
 export const pokeStat: Array<PokeStat> = [
