@@ -1,14 +1,14 @@
 import { pokeFavorite } from "../data/pokemonData"
+import { PokeCard } from "../components/Pokemons"
 
-
-const FavoritePokes = () => {
+export const FavoritePokes = () => {
   return (
     <div>
          {pokeFavorite.map((poke) => (
            <PokeCard
-             key={poke.name}
-             name={capitalize(poke.name)}
-             number={poke.number}
+              key={poke.name}
+              name={poke.name}
+              number={poke.number}
            />
          ))}
     </div>

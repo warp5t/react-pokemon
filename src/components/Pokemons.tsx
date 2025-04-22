@@ -2,6 +2,7 @@ import { pokeStat } from "../data/pokemonData";
 import style from '../styles/pokemons/Pokemons.module.css'
 import favorites from "../assets/icon/star.png";
 import comparison from "../assets/icon/arrows.png";
+import { PokeCardProps } from "../interfaces/Pokemon";
 
 const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -13,7 +14,7 @@ export const PokemonsContainer = () => {
     {pokeStat.map((poke) => (
       <PokeCard
         key={poke.name}
-        name={capitalize(poke.name)}
+        name={poke.name}
         number={poke.number}
       />
     ))}
@@ -25,7 +26,7 @@ export const PokeCard = ({name, number}: PokeCardProps) => {
   return (
     <div className={style.pokemons__item} onClick={() => {console.log(name)}}>
       <div className={style.pokemons__wrapTitle}>
-        <h3>{name}</h3>
+        <h3>{capitalize(name)}</h3>
         <div>#{number}</div>
       </div>
     <div className={style.pokemons__wrapButton}>
