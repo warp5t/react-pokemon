@@ -13,14 +13,14 @@
   border-radius: 8px;
   margin: 6px;
 }
-@media (max-width:690px) {
+@media (max-width: 690px) {
   .pokemons__item {
     width: 80%;
   }
 }
-@media (max-width:330px) {
+@media (max-width: 330px) {
   .pokemons__item {
-   flex-direction: column;
+    flex-direction: column;
   }
 }
 
@@ -30,7 +30,7 @@
   align-items: center;
   width: 30%;
 }
-@media (max-width:330px) {
+@media (max-width: 330px) {
   .pokemons__wrapTitle {
     width: 50%;
   }
