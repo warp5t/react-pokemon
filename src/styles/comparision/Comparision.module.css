@@ -1,0 +1,42 @@
+.pokeCompare {
+  display: flex;
+  justify-content: center;
+}
+
+.pokeCompare__title {
+  font-size: 30px;
+}
+
+.pokeCompare__stat {
+  font-size: 20px;
+}
+
+.pokeCompare__wrapBtn {
+  padding: 10px;
+}
+
+.pokeCompare__btn {
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+}
+
+.pokeCompare__img {
+  display: inline-block;
+}
+
+/* ------------------------------------------------ */
+
+.compareSreen {
+  display: flex;
+  justify-content: center;
+}
+
+.compareSreen__title {
+  font-size: 30px;
+}
+
+.compareSreen__cardBox {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}

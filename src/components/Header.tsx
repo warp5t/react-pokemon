@@ -1,4 +1,4 @@
-import styles from '../styles/header/Header.module.css'
+import styles from '../styles/header/Header.module.css';
 
 export const Header = () => {
   return (
@@ -11,5 +11,5 @@ export const Header = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
