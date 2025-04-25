@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { pokeCompare } from '../data/pokemonData';
-import { TablePoke } from '../interfaces/Pokemon';
+import { pokeCompare } from '../../data/pokemonData';
+import { TablePoke } from '../../interfaces/Pokemon';
 import deleteIcon from '../assets/icon/delete.png';
 import style from '../styles/comparision/Comparision.module.css';
 

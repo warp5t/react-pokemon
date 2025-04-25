@@ -1,5 +1,5 @@
-import { pokeFavorite } from '../data/pokemonData';
-import { PokeCard } from '../components/Pokemons';
+import { pokeFavorite } from '../../data/pokemonData';
+import { PokeCard } from '../../components/Pokemons';
 
 export const FavoritePokes = () => {
   return (

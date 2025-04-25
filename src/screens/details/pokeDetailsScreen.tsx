@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { PokeStat } from '../interfaces/Pokemon';
+import { PokeStat } from '../../interfaces/Pokemon';
 import style from '../styles/pokeDetails/PokeDetails.module.css';
 
 export const PokeDetails: FC<PokeStat> = ({ name, height, weight, image, number }) => {

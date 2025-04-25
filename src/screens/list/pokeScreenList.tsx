@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { pokeStat } from '../data/pokemonData';
-import { PokeDetails } from './pokeDetailsScreen';
+import { pokeStat } from '../../data/pokemonData';
+import { PokeDetails } from '../details/pokeDetailsScreen';
 
 export const PokeScreenList: FC = () => {
   return (
