@@ -1,0 +1,11 @@
+.favorites {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.favorites__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
