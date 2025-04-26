@@ -27,10 +27,10 @@ export const PokeCard = ({ name, number }: PokeCardProps) => {
         <div>#{number}</div>
       </div>
       <div className={style.pokemons__wrapButton}>
-        <button>
+        <button onClick={(e) => e.preventDefault()}>
           <img src={favorites} alt='favorites' />
         </button>
-        <button>
+        <button onClick={(e) => e.preventDefault()}>
           <img src={comparison} alt='comparison' />
         </button>
       </div>
