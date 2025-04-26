@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from '../styles/header/Header.module.css';
 
 export const Header = () => {
@@ -6,8 +7,12 @@ export const Header = () => {
       <div className={styles.header__wrap}>
         <h1>Pokemons</h1>
         <div className={styles.header__wrapButton}>
-          <button>Favorites</button>
-          <button>Comparison</button>
+          <Link to='/favorites' className={styles.header__btn}>
+            Favorites
+          </Link>
+          <Link to='/comparison' className={styles.header__btn}>
+            Comparison
+          </Link>
         </div>
       </div>
     </header>

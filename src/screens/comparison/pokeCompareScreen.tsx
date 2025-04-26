@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { pokeCompare } from '../../data/pokemonData';
 import { TablePoke } from '../../interfaces/Pokemon';
-import deleteIcon from '../assets/icon/delete.png';
-import style from '../styles/comparision/Comparision.module.css';
+import deleteIcon from '../../assets/icon/delete.png';
+import style from '../../styles/comparision/Comparision.module.css';
 
 export const CompareScreen = () => {
   return (
@@ -22,17 +22,17 @@ export const CompareScreen = () => {
   );
 };
 
-export const PokeStatTable: FC<TablePoke> = ({name, weight, height}) => {
+export const PokeStatTable: FC<TablePoke> = ({ name, weight, height }) => {
   return (
     <div className={style.pokeCompare}>
       <h4 className={style.pokeCompare__title}>{name}</h4>
       <div className={style.pokeCompare__stat}>{weight}</div>
       <div className={style.pokeCompare__stat}>{height}</div>
       <div className={style.pokeCompare__wrapBtn}>
-      <button className={style.pokeCompare__btn}>
-        <img className={style.pokeCompare__img} src={deleteIcon} alt="delete" />
-      </button>
+        <button className={style.pokeCompare__btn}>
+          <img className={style.pokeCompare__img} src={deleteIcon} alt='delete' />
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
