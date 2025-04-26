@@ -3,6 +3,7 @@ import style from '../styles/pokemons/Pokemons.module.css';
 import favorites from '../assets/icon/star.png';
 import comparison from '../assets/icon/arrows.png';
 import { PokeCardProps } from '../interfaces/Pokemon';
+import { Link } from 'react-router-dom';
 
 export const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -20,12 +21,7 @@ export const PokemonsContainer = () => {
 
 export const PokeCard = ({ name, number }: PokeCardProps) => {
   return (
-    <div
-      className={style.pokemons__item}
-      onClick={() => {
-        console.log(name);
-      }}
-    >
+    <Link to={`/details/${name}`} className={style.pokemons__item}>
       <div className={style.pokemons__wrapTitle}>
         <h3>{capitalize(name)}</h3>
         <div>#{number}</div>
@@ -38,7 +34,7 @@ export const PokeCard = ({ name, number }: PokeCardProps) => {
           <img src={comparison} alt='comparison' />
         </button>
       </div>
-    </div>
+    </Link>
   );
 };
 
