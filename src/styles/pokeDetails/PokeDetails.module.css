@@ -9,14 +9,25 @@
 
 .pokeStat__subwrap {
   display: flex;
+  justify-content: space-around;
 }
 .pokeStat__detail {
-  font-size: 15px;
+  font-size: 30px;
+}
+.pokeStat__detail:first-child {
+  padding: 0 20px 0 0;
 }
 .pokeStat__wrapImg {
+  width: fit-content;
   border: 2px solid whitesmoke;
   border-radius: 5px;
 }
 .pokeStat__img {
   display: inline-block;
+  vertical-align: middle;
+}
+
+.details {
+  display: flex;
+  justify-content: center;
 }

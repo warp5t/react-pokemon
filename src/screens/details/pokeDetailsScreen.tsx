@@ -3,11 +3,12 @@ import { PokeStat } from '../../interfaces/Pokemon';
 import style from '../../styles/pokeDetails/PokeDetails.module.css';
 import { useParams } from 'react-router-dom';
 import { pokeStat } from '../../data/pokemonData';
+import { capitalize } from '../../components/Pokemons';
 
 export const PokeDetails: FC<PokeStat> = ({ name, height, weight, image, number }) => {
   return (
     <div className={style.pokeStat}>
-      <h4 className={style.pokeStat__title}>{name}</h4>
+      <h4 className={style.pokeStat__title}>{capitalize(name)}</h4>
       <div className={style.pokeStat__subwrap}>
         <div className={style.pokeStat__detail}>Height: {height}</div>
         <div className={style.pokeStat__detail}>Weight: {weight}</div>
@@ -30,7 +31,7 @@ export const PokeDetailsScreen = () => {
   }
 
   return (
-    <div>
+    <div className={style.details}>
       <PokeDetails
         name={poke.name}
         height={poke.height}
