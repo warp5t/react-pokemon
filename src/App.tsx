@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { CompareScreen } from './screens/comparison/pokeCompareScreen';
 import { FavoritePokes } from './screens/favorites/pokeFavoriteScreen';
+import { NotFoundPage } from './screens/notFound/NotFoundPage';
 
 const App: FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: FC = () => {
       <Routes>
         <Route path='/favorites' element={<FavoritePokes />} />
         <Route path='/comparison' element={<CompareScreen />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
