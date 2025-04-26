@@ -4,7 +4,7 @@ import favorites from '../assets/icon/star.png';
 import comparison from '../assets/icon/arrows.png';
 import { PokeCardProps } from '../interfaces/Pokemon';
 
-const capitalize = (str: string) => {
+export const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
