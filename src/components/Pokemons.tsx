@@ -4,10 +4,7 @@ import favorites from '../assets/icon/star.png';
 import comparison from '../assets/icon/arrows.png';
 import { PokeCardProps } from '../interfaces/Pokemon';
 import { Link } from 'react-router-dom';
-
-export const capitalize = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
+import { capitalizing } from '../utils/capitalizer';
 
 export const PokemonsContainer = () => {
   return (
@@ -23,7 +20,7 @@ export const PokeCard = ({ name, number }: PokeCardProps) => {
   return (
     <Link to={`/details/${name}`} className={style.pokemons__item}>
       <div className={style.pokemons__wrapTitle}>
-        <h3>{capitalize(name)}</h3>
+        <h3>{capitalizing(name)}</h3>
         <div>#{number}</div>
       </div>
       <div className={style.pokemons__wrapButton}>
