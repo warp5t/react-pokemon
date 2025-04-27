@@ -23,7 +23,7 @@ export const PokeDetails: FC<PokeStat> = ({ name, height, weight, image, number 
 
 export const PokeDetailsScreen = () => {
   const { pokemonName } = useParams<{ pokemonName: string }>();
-
+  console.log(pokemonName)
   const poke = pokeStat.find((p) => p.name === pokemonName);
 
   if (!poke) {
