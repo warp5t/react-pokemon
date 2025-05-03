@@ -1,15 +1,26 @@
 import './App.css';
+import { FC } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
-import { PokemonsContainer, PaginationPoke } from './components/Pokemons';
+import { CompareScreen } from './screens/comparison/pokeCompareScreen';
+import { FavoritePokes } from './screens/favorites/pokeFavoriteScreen';
+import { NotFoundPage } from './screens/notFound/NotFoundPage';
+import { PokemonsContainer } from './components/Pokemons';
+import { PokeDetailsScreen } from './screens/details/pokeDetailsScreen';
 
-function App() {
+const App: FC = () => {
   return (
-    <div className='wrapRoot'>
+    <BrowserRouter>
       <Header />
-      <PokemonsContainer />
-      <PaginationPoke />
-    </div>
+      <Routes>
+        <Route path='/' element={<PokemonsContainer />} />
+        <Route path='/details/:pokemonName' element={<PokeDetailsScreen />} />
+        <Route path='/favorites' element={<FavoritePokes />} />
+        <Route path='/comparison' element={<CompareScreen />} />
+        <Route path='*' element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
