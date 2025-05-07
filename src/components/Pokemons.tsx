@@ -14,27 +14,30 @@ import { AppDispatch } from '../store/store';
 export const PokemonsContainer = () => {
   const isLoading = useSelector((state: RootState) => state.pokeList.isLoading);
   const dataPoke = useSelector((state: RootState) => state.pokeList.data.results || []);
+  const error = useSelector((state: RootState) => state.pokeList.error);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getInitialPokeThunks());
-    console.log(dataPoke)
   }, []);
 
   if (isLoading) {
     return <p>Loading pokemons...</p>;
   }
-console.log('dataPoke: ', dataPoke)
+  if (error) return <p>Error: {error}</p>
+  console.log('dataPoke: ', dataPoke);
   return (
-    <div className={style.pokemons}>
-    {dataPoke.map((poke) => (
-      <PokeCard
-        key={poke.name}
-        name={poke.name}
-        number={poke.url.split('/').filter(Boolean).pop() || '0'}
-      />
-    ))}
-  </div>
+    <>
+      <div className={style.pokemons}>
+        {dataPoke.map((poke) => (
+          <PokeCard
+            key={poke.name}
+            name={poke.name}
+            number={poke.url.split('/').filter(Boolean).pop() || '0'}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 
