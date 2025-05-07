@@ -6,7 +6,7 @@ export interface PokeResults {
   data: DataPoke,
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
-  isLoading: false,
+  isLoading: boolean,
 }
 
 interface InfoPoke {

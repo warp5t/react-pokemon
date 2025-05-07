@@ -5,14 +5,20 @@ import comparison from '../assets/icon/arrows.png';
 import { PokeCardProps } from '../interfaces/Pokemon';
 import { Link } from 'react-router-dom';
 import { capitalizing } from '../utils/capitalizer';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 export const PokemonsContainer = () => {
+  const isLoading = useSelector((state: RootState) => state.pokeList.isLoading)
   return (
-    <div className={style.pokemons}>
-      {pokeStat.map((poke) => (
-        <PokeCard key={poke.name} name={poke.name} number={poke.number} />
-      ))}
-    </div>
+    <>
+      <p>{isLoading ? '...loading' : 'Pokemon list'}</p>
+      <div className={style.pokemons}>
+        {pokeStat.map((poke) => (
+          <PokeCard key={poke.name} name={poke.name} number={poke.number} />
+        ))}
+      </div>
+    </>
   );
 };
 
