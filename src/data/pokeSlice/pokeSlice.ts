@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export interface PokeResults {
   data: DataPoke,
-  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
   isLoading: boolean,
 }
@@ -31,7 +30,6 @@ const initialState: PokeResults = {
       }
     ]
   },
-  status: 'idle',
   error: null,
   isLoading: false,
 };
