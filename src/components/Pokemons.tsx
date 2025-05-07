@@ -1,4 +1,4 @@
-import { pokeStat } from '../data/pokemonData';
+// import { pokeStat } from '../data/pokemonData';
 import style from '../styles/pokemons/Pokemons.module.css';
 import favorites from '../assets/icon/star.png';
 import comparison from '../assets/icon/arrows.png';
@@ -7,30 +7,34 @@ import { Link } from 'react-router-dom';
 import { capitalizing } from '../utils/capitalizer';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
-import { setLoading } from '../data/pokeSlice/pokeSlice';
+import { useEffect } from 'react';
+import { getInitialPokeThunks } from '../data/pokeSlice/pokeSlice';
+import { AppDispatch } from '../store/store';
 
 export const PokemonsContainer = () => {
-  const isLoading = useSelector((state: RootState) => state.pokeList.isLoading)
-  const dataPoke = useSelector((state:RootState) => state.pokeList.data.results)
-  const dispatch = useDispatch();
+  const isLoading = useSelector((state: RootState) => state.pokeList.isLoading);
+  const dataPoke = useSelector((state: RootState) => state.pokeList.data.results || []);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(getInitialPokeThunks());
+    console.log(dataPoke)
+  }, []);
+
+  if (isLoading) {
+    return <p>Loading pokemons...</p>;
+  }
+console.log('dataPoke: ', dataPoke)
   return (
-    <>
-      <p>{isLoading ? '...loading' : 'Pokemon list'}</p>
-      <button onClick={() => {dispatch(setLoading(true))}}></button>
-      <div>
-      {dataPoke.map((poke) => (
-          <div key={poke.name}>
-            <h3>{poke.name}</h3>
-            <p>URL: {poke.url}</p>
-          </div>
-        ))}
-      </div>
-      <div className={style.pokemons}>
-        {pokeStat.map((poke) => (
-          <PokeCard key={poke.name} name={poke.name} number={poke.number} />
-        ))}
-      </div>
-    </>
+    <div className={style.pokemons}>
+    {dataPoke.map((poke) => (
+      <PokeCard
+        key={poke.name}
+        name={poke.name}
+        number={poke.url.split('/').filter(Boolean).pop() || '0'}
+      />
+    ))}
+  </div>
   );
 };
 

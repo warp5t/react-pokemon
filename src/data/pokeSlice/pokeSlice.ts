@@ -1,67 +1,69 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export interface PokeResults {
-  data: DataPoke,
-  error: null,
-  isLoading: boolean,
+  data: DataPoke;
+  isLoading: boolean;
 }
 
-export interface InfoPoke {
-  name: string,
-  url: string
+interface InfoPoke {
+  name: string;
+  url: string;
 }
 
 interface DataPoke {
-  count: number,
-  next: string,
+  count: number;
+  next: string | null;
   previous: null | string;
-  results: Array<InfoPoke>
+  results: InfoPoke[];
 }
 
 const initialState: PokeResults = {
   data: {
-    count: 1025,
-    next: 'https://pokeapi.co/api/v2/pokemon-species/?offset=20&limit=20',
+    count: 0,
+    next: null,
     previous: null,
-    results: [
-      {
-        name: 'bulbasaur',
-        url: 'https://pokeapi.co/api/v2/pokemon-species/1/'
-      }
-    ]
+    results: []
   },
-  error: null,
   isLoading: false,
 };
 
-export const fetchInitialPokemons = createAsyncThunk(
+export const getInitialPokeThunks = createAsyncThunk(
   'pokeList/fetchInitial',
-  async(_,{dispatch}) => {
+  async (_, { dispatch }) => {
     try {
-      dispatch(setLoading(true))
+      dispatch(setLoading(true));
       const response = await fetch('https://pokeapi.co/api/v2/pokemon-species');
-      return await response.json();
-    } catch (e) {
-      // Error
+      const { count, next, previous, results } = await response.json();
+
+      dispatch(fetchDataPoke({
+        count,
+        next,
+        previous,
+        results
+      }));
     } finally {
-      dispatch(setLoading(false))
+      dispatch(setLoading(false));
     }
   }
 );
-
 
 const pokeListSlice = createSlice({
   name: 'pokeList',
   initialState,
   reducers: {
     setLoading(state, action) {
-      state.isLoading = action.payload
+      state.isLoading = action.payload;
     },
     fetchDataPoke(state, action) {
-      state.data.results = action.payload
+      state.data = {
+        count: action.payload.count,
+        next: action.payload.next,
+        previous: action.payload.previous,
+        results: action.payload.results
+      };
     }
   },
-})
+});
 
 
 export const { setLoading, fetchDataPoke } = pokeListSlice.actions;

@@ -1,6 +1,6 @@
 export interface PokeCardProps {
   name: string;
-  number: number;
+  number: string;
 }
 export interface PokeStat {
   number: number;
