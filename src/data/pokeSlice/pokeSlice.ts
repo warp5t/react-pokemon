@@ -1,6 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
-// import { act } from 'react'
-// import type { PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export interface PokeResults {
   data: DataPoke,
@@ -9,7 +7,7 @@ export interface PokeResults {
   isLoading: boolean,
 }
 
-interface InfoPoke {
+export interface InfoPoke {
   name: string,
   url: string
 }
@@ -37,6 +35,22 @@ const initialState: PokeResults = {
   error: null,
   isLoading: false,
 };
+
+export const fetchInitialPokemons = createAsyncThunk(
+  'pokeList/fetchInitial',
+  async(_,{dispatch}) => {
+    try {
+      dispatch(setLoading(true))
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon-species');
+      return await response.json();
+    } catch (e) {
+      // Error
+    } finally {
+      dispatch(setLoading(false))
+    }
+  }
+);
+
 
 const pokeListSlice = createSlice({
   name: 'pokeList',
