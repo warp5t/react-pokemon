@@ -8,7 +8,7 @@ import { capitalizing } from '../utils/capitalizer';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { useEffect } from 'react';
-import { getInitialPokeThunks } from '../data/pokeSlice/pokeSlice';
+import { getInitialPokeThunks, getPagePokeThunks } from '../data/pokeSlice/pokeSlice';
 import { AppDispatch } from '../store/store';
 
 export const PokemonsContainer = () => {
@@ -62,12 +62,27 @@ export const PokeCard = ({ name, number }: PokeCardProps) => {
 };
 
 export const PaginationPoke = () => {
+  const nextPage = useSelector((state: RootState) => state.pokeList.data.next);
+  const previousPage = useSelector((state: RootState) => state.pokeList.data.previous);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const setNext = () => {
+    if (nextPage) {
+      dispatch(getPagePokeThunks(nextPage));
+    }
+  };
+
+  const setPrevious = () => {
+    if (previousPage) {
+      dispatch(getPagePokeThunks(previousPage));
+    }
+  };
   return (
     <div className={style.pokemons__pagination}>
       <div className={style.pokemons__paginationWrap}>
-        <button className={style.pokemons__paginationBtn}>Previous</button>
+        <button className={style.pokemons__paginationBtn} onClick={setPrevious}>Previous</button>
         <div className={style.pokemons__paginationPage}>1</div>
-        <button className={style.pokemons__paginationBtn}>Next</button>
+        <button className={style.pokemons__paginationBtn} onClick={setNext}>Next</button>
       </div>
     </div>
   );

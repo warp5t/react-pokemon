@@ -29,10 +29,20 @@ const initialState: PokeResults = {
   error: null,
 };
 
-export const getInitialPokeThunks = createAsyncThunk('pokeList/fetchInitial', async () => {
+export const getInitialPokeThunks = createAsyncThunk(
+  'pokeList/fetchInitial',
+  async () => {
   const response = await fetch('https://pokeapi.co/api/v2/pokemon-species');
   return await response.json();
 });
+
+export const getPagePokeThunks = createAsyncThunk(
+  'pokeList/fetchNext',
+  async (url: string) => {
+    const response = await fetch(url);
+    return await response.json();
+  }
+);
 
 const pokeListSlice = createSlice({
   name: 'pokeList',
@@ -56,9 +66,25 @@ const pokeListSlice = createSlice({
       .addCase(getInitialPokeThunks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Unknown error';
+      })
+      .addCase(getPagePokeThunks.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getPagePokeThunks.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data = {
+          count: action.payload.count,
+          next: action.payload.next,
+          previous: action.payload.previous,
+          results: action.payload.results,
+        };
+      })
+      .addCase(getPagePokeThunks.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || 'Unknown error';
       });
   },
 });
 
-export const { setLoading, fetchDataPoke } = pokeListSlice.actions;
 export default pokeListSlice.reducer;
