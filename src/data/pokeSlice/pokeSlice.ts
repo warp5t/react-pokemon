@@ -16,6 +16,7 @@ interface DataPoke {
   next: string | null;
   previous: null | string;
   results: InfoPoke[];
+  currentPage: number;
 }
 
 const initialState: PokeResults = {
@@ -24,6 +25,7 @@ const initialState: PokeResults = {
     next: null,
     previous: null,
     results: [],
+    currentPage: 1,
   },
   isLoading: false,
   error: null,
@@ -37,8 +39,8 @@ export const getInitialPokeThunks = createAsyncThunk(
 });
 
 export const getPagePokeThunks = createAsyncThunk(
-  'pokeList/fetchNext',
-  async (url: string) => {
+  'pokeList/fetchPage',
+  async ({ url }: { url: string; actionType: 'next' | 'previous' }) => {
     const response = await fetch(url);
     return await response.json();
   }
@@ -61,6 +63,7 @@ const pokeListSlice = createSlice({
           next: action.payload.next,
           previous: action.payload.previous,
           results: action.payload.results,
+          currentPage: 1,
         };
       })
       .addCase(getInitialPokeThunks.rejected, (state, action) => {
@@ -78,6 +81,9 @@ const pokeListSlice = createSlice({
           next: action.payload.next,
           previous: action.payload.previous,
           results: action.payload.results,
+          currentPage: action.meta.arg.actionType === 'next'
+          ? state.data.currentPage + 1
+          : state.data.currentPage - 1,
         };
       })
       .addCase(getPagePokeThunks.rejected, (state, action) => {
