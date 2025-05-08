@@ -33,7 +33,7 @@ export const PokemonsContainer = () => {
           <PokeCard
             key={poke.name}
             name={poke.name}
-            number={poke.url.split('/').filter(Boolean).pop() || '0'}
+            number={Number(poke.url.split('/').filter(Boolean).pop() || '0')}
           />
         ))}
       </div>
