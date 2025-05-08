@@ -64,7 +64,10 @@ export const PokeCard = ({ name, number }: PokeCardProps) => {
 export const PaginationPoke = () => {
   const nextPage = useSelector((state: RootState) => state.pokeList.data.next);
   const previousPage = useSelector((state: RootState) => state.pokeList.data.previous);
-  const currentPage = useSelector((state: RootState) => state.pokeList.data.currentPage)
+  const currentPage = useSelector((state: RootState) => state.pokeList.data.currentPage);
+  const ammountPokes = useSelector((state: RootState) => state.pokeList.data.count);
+  const ammountPages = Math.ceil(ammountPokes / 20);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const setNext = () => {
@@ -83,7 +86,7 @@ export const PaginationPoke = () => {
     <div className={style.pokemons__pagination}>
       <div className={style.pokemons__paginationWrap}>
         <button className={style.pokemons__paginationBtn} onClick={setPrevious}>Previous</button>
-        <div className={style.pokemons__paginationPage}>{currentPage}</div>
+        <div className={style.pokemons__paginationPage}>{currentPage} - {ammountPages}</div>
         <button className={style.pokemons__paginationBtn} onClick={setNext}>Next</button>
       </div>
     </div>
