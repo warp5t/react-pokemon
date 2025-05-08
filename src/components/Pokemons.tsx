@@ -37,6 +37,7 @@ export const PokemonsContainer = () => {
           />
         ))}
       </div>
+      <PaginationPoke />
     </>
   );
 };

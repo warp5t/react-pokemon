@@ -37,19 +37,7 @@ export const getInitialPokeThunks = createAsyncThunk('pokeList/fetchInitial', as
 const pokeListSlice = createSlice({
   name: 'pokeList',
   initialState,
-  reducers: {
-    setLoading(state, action) {
-      state.isLoading = action.payload;
-    },
-    fetchDataPoke(state, action) {
-      state.data = {
-        count: action.payload.count,
-        next: action.payload.next,
-        previous: action.payload.previous,
-        results: action.payload.results,
-      };
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getInitialPokeThunks.pending, (state) => {
