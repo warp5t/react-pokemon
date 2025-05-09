@@ -1,4 +1,3 @@
-// import { pokeStat } from '../data/pokemonData';
 import style from '../Pokemons/Pokemons.module.css';
 import favorites from '../../assets/icon/star.png';
 import comparison from '../../assets/icon/arrows.png';
