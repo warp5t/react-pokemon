@@ -12,8 +12,8 @@ import { getInitialPokeThunks, getPagePokeThunks } from '../data/pokeSlice/pokeS
 import { AppDispatch } from '../store/store';
 
 export const PokemonsContainer = () => {
-  const isLoading = useSelector((state: RootState) => state.pokeList.isLoading);
-  const dataPoke = useSelector((state: RootState) => state.pokeList.data.results || []);
+  const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeList.isLoading);
+  const selectDataPoke = useSelector((state: RootState) => state.pokeList.data.results || []);
   const error = useSelector((state: RootState) => state.pokeList.error);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -21,7 +21,7 @@ export const PokemonsContainer = () => {
     dispatch(getInitialPokeThunks());
   }, []);
 
-  if (isLoading) {
+  if (selectIsPokemonsLoading) {
     return <p>Loading pokemons...</p>;
   }
   if (error) return <p>Error: {error}</p>
@@ -29,7 +29,7 @@ export const PokemonsContainer = () => {
   return (
     <>
       <div className={style.pokemons}>
-        {dataPoke.map((poke) => (
+        {selectDataPoke.map((poke) => (
           <PokeCard
             key={poke.name}
             name={poke.name}
