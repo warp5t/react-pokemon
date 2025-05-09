@@ -1,7 +1,7 @@
 import './App.css';
 import { FC } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Header } from './components/Header';
+import { Header } from './components/Header/Header';
 import { CompareScreen } from './screens/comparison/pokeCompareScreen';
 import { FavoritePokes } from './screens/favorites/pokeFavoriteScreen';
 import { NotFoundPage } from './screens/notFound/NotFoundPage';
