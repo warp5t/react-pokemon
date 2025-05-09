@@ -25,7 +25,7 @@ export const PokemonsContainer = () => {
     return <p>Loading pokemons...</p>;
   }
   if (error) return <p>Error: {error}</p>
-  console.log('dataPoke: ', dataPoke);
+
   return (
     <>
       <div className={style.pokemons}>
@@ -73,7 +73,6 @@ export const PaginationPoke = () => {
   const setNext = () => {
     if (nextPage) {
       dispatch(getPagePokeThunks({ url: nextPage, actionType: 'next' }))
-      console.log('currentPage: ', currentPage)
     }
   };
 
