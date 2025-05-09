@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { PokeStat } from '../../interfaces/Pokemon';
-import style from '../../styles/pokeDetails/PokeDetails.module.css';
+import style from '../../screens/details/PokeDetails.module.css';
 import { useParams } from 'react-router-dom';
 import { pokeStat } from '../../data/pokemonData';
 import { capitalizing } from '../../utils/capitalizer';
