@@ -5,7 +5,7 @@ import { Header } from './components/Header/Header';
 import { CompareScreen } from './screens/comparison/pokeCompareScreen';
 import { FavoritePokes } from './screens/favorites/pokeFavoriteScreen';
 import { NotFoundPage } from './screens/notFound/NotFoundPage';
-import { PokemonsContainer } from './components/Pokemons';
+import { PokemonsContainer } from './components/Pokemons/Pokemons';
 import { PokeDetailsScreen } from './screens/details/pokeDetailsScreen';
 
 const App: FC = () => {

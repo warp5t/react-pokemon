@@ -1,15 +1,15 @@
 // import { pokeStat } from '../data/pokemonData';
-import style from '../styles/pokemons/Pokemons.module.css';
-import favorites from '../assets/icon/star.png';
-import comparison from '../assets/icon/arrows.png';
-import { PokeCardProps } from '../interfaces/Pokemon';
+import style from '../Pokemons/Pokemons.module.css';
+import favorites from '../../assets/icon/star.png';
+import comparison from '../../assets/icon/arrows.png';
+import { PokeCardProps } from '../../interfaces/Pokemon';
 import { Link } from 'react-router-dom';
-import { capitalizing } from '../utils/capitalizer';
+import { capitalizing } from '../../utils/capitalizer';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store/store';
+import { RootState } from '../../store/store';
 import { useEffect } from 'react';
-import { getInitialPokeThunks, getPagePokeThunks } from '../data/pokeSlice/pokeSlice';
-import { AppDispatch } from '../store/store';
+import { getInitialPokeThunks, getPagePokeThunks } from '../../data/pokeSlice/pokeSlice';
+import { AppDispatch } from '../../store/store';
 
 export const PokemonsContainer = () => {
   const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeList.isLoading);
