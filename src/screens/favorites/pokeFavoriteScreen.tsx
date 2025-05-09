@@ -1,6 +1,6 @@
 import { pokeFavorite } from '../../data/pokemonData';
 import { PokeCard } from '../../components/Pokemons';
-import style from '../../styles/favorites/Favorites.module.css';
+import style from '../../screens/favorites/Favorites.module.css';
 
 export const FavoritePokes = () => {
   return (
