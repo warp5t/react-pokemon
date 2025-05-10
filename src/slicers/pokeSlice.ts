@@ -1,35 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
-export interface PokeResults {
-  data: DataPoke;
-  isLoading: boolean;
-  error: string | null;
-}
-
-interface InfoPoke {
-  name: string;
-  url: string;
-}
-
-interface DataPoke {
-  count: number;
-  next: string | null;
-  previous: null | string;
-  results: InfoPoke[];
-  currentPage: number;
-}
-
-const initialState: PokeResults = {
-  data: {
-    count: 0,
-    next: null,
-    previous: null,
-    results: [],
-    currentPage: 1,
-  },
-  isLoading: false,
-  error: null,
-};
+import { initialState } from './pokeSlicerType';
 
 export const getInitialPokeThunks = createAsyncThunk(
   'pokeList/fetchInitial',
