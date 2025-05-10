@@ -5,7 +5,7 @@ import { Header } from './components/Header/Header';
 import { CompareScreen } from './screens/comparison/pokeCompareScreen';
 import { FavoritePokes } from './screens/favorites/pokeFavoriteScreen';
 import { NotFoundPage } from './screens/notFound/NotFoundPage';
-import { PokemonsContainer } from './components/Pokemons/Pokemons';
+import { PokemonsContainerScreen } from './screens/list/pokeScreenList';
 import { PokeDetailsScreen } from './screens/details/pokeDetailsScreen';
 
 const App: FC = () => {
@@ -13,7 +13,7 @@ const App: FC = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path='/' element={<PokemonsContainer />} />
+        <Route path='/' element={<PokemonsContainerScreen />} />
         <Route path='/details/:pokemonName' element={<PokeDetailsScreen />} />
         <Route path='/favorites' element={<FavoritePokes />} />
         <Route path='/comparison' element={<CompareScreen />} />
