@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { pokeStat } from '../../data/pokemonData';
-import { PokeDetails } from '../details/pokeDetailsScreen';
+// import { pokeStat } from '../../data/pokemonData';
+// import { PokeDetails } from '../details/pokeDetailsScreen';
 import { useEffect } from 'react';
 import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeSlice/pokeSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,16 +12,16 @@ import { PokeCard } from '../../components/Pokemons/Pokemons';
 export const PokeScreenList: FC = () => {
   return (
     <div>
-      {pokeStat.map((comp) => (
+      {/* {pokeStat.map((comp) => (
         <PokeDetails
           key={`${comp.name}`}
           name={comp.name}
           height={comp.height}
           weight={comp.weight}
-          image={comp.image}
-          number={comp.number}
+          sprite={comp.image}
+          id={comp.number}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

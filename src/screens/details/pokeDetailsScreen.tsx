@@ -49,7 +49,7 @@ export const PokeDetailsScreen = () => {
   return (
     <div className={style.details}>
 
-      <button onClick={() => { console.log('selectDetailPoke: ', selectDetailPoke) }}></button>
+      {/* <button onClick={() => { console.log('selectDetailPoke: ', selectDetailPoke) }}></button> */}
       <PokeDetails
         name={selectDetailPoke.name}
         height={selectDetailPoke.height}
