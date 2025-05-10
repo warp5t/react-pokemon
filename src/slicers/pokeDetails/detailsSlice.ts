@@ -27,7 +27,7 @@ export const getDetailsPokeThunks = createAsyncThunk(
       height: data.height,
       weight: data.weight,
       types: data.types.map((t: { type: { name: string } }) => t.type.name),
-      sprite: data.sprites.front_default
+      sprite: data.sprites.other['official-artwork']['front_default']
     };
 });
 

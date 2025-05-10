@@ -1,10 +1,10 @@
 interface PokemonDetails {
-  id: number | null;
-  name: string | null;
-  height: number | null;
-  weight: number | null;
+  id: number;
+  name: string;
+  height: number;
+  weight: number;
   types: string[];
-  sprite: string | null;
+  sprite: string;
 }
 
 interface PokemonDetailsState {
@@ -15,12 +15,12 @@ interface PokemonDetailsState {
 
 export const initialState: PokemonDetailsState = {
   data: {
-    id: null,
-    name: null,
-    height: null,
-    weight: null,
+    id: 1,
+    name: '',
+    height: 0,
+    weight: 0,
     types: [],
-    sprite: null
+    sprite: ''
   },
   isLoading: false,
   error: null
