@@ -18,30 +18,9 @@ export const PokeScreenList: FC = () => {
     </div>
   );
 };
-// import { FC } from 'react';
-// import { pokeStat } from '../../data/pokemonData';
-// import { PokeDetails } from '../details/pokeDetailsScreen';
-
-// export const PokeScreenList: FC = () => {
-//   return (
-//     <div>
-//       {pokeStat.map((comp) => (
-//         <PokeDetails
-//           key={`${comp.name}`}
-//           name={comp.name}
-//           height={comp.height}
-//           weight={comp.weight}
-//           image={comp.image}
-//           number={comp.number}
-//         />
-//       ))}
-//     </div>
-//   );
-// };
-
 
 import { useEffect } from 'react';
-import { getInitialPokeThunks, getPagePokeThunks } from '../../data/pokeSlice/pokeSlice';
+import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { AppDispatch } from '../../store/store';
