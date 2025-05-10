@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { initialState } from './pokeSlicerType';
+import { initialState  } from './pokeSlicerType';
 
 export const getInitialPokeThunks = createAsyncThunk(
   'pokeList/fetchInitial',
