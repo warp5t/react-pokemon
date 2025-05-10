@@ -1,6 +1,13 @@
 import { FC } from 'react';
 import { pokeStat } from '../../data/pokemonData';
 import { PokeDetails } from '../details/pokeDetailsScreen';
+import { useEffect } from 'react';
+import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeSlice/pokeSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store/store';
+import { AppDispatch } from '../../store/store';
+import style from '../list/Pokemons.module.css';
+import { PokeCard } from '../../components/Pokemons/Pokemons';
 
 export const PokeScreenList: FC = () => {
   return (
@@ -19,13 +26,6 @@ export const PokeScreenList: FC = () => {
   );
 };
 
-import { useEffect } from 'react';
-import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeSlice';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/store';
-import { AppDispatch } from '../../store/store';
-import style from '../list/Pokemons.module.css';
-import { PokeCard } from '../../components/Pokemons/Pokemons';
 
 export const PokemonsContainerScreen = () => {
   const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeList.isLoading);
