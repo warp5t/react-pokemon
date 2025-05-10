@@ -33,8 +33,6 @@ export const PokeDetailsScreen = () => {
   const error = useSelector((state: RootState) => state.pokeDetails.error);
   const dispatch = useDispatch<AppDispatch>();
 
-  console.log(pokemonName);
-  // const poke = pokeStat.find((p) => p.name === pokemonName);
    useEffect(() => {
     dispatch(getDetailsPokeThunks({ url: `https://pokeapi.co/api/v2/pokemon/${pokemonName}/` }));
    }, [pokemonName]);
@@ -48,8 +46,6 @@ export const PokeDetailsScreen = () => {
 
   return (
     <div className={style.details}>
-
-      {/* <button onClick={() => { console.log('selectDetailPoke: ', selectDetailPoke) }}></button> */}
       <PokeDetails
         name={selectDetailPoke.name}
         height={selectDetailPoke.height}
