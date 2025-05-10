@@ -1,4 +1,4 @@
-import { PokeStat } from '../interfaces/Pokemon';
+import { PokeStat } from "../screens/details/pokeDetailsScreenType";
 
 export const pokeFavorite: Array<PokeStat> = [
   {

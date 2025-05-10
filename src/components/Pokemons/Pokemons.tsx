@@ -1,9 +1,9 @@
 import style from '../Pokemons/Pokemons.module.css';
 import favorites from '../../assets/icon/star.png';
 import comparison from '../../assets/icon/arrows.png';
-import { PokeCardProps } from '../../interfaces/Pokemon';
 import { Link } from 'react-router-dom';
 import { capitalizing } from '../../utils/capitalizer';
+import { PokeCardProps } from './pokemonsTyoe';
 
 const logging = (name:string) => {
   console.log(name)

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { PokeStat } from '../../interfaces/Pokemon';
+import { PokeStat } from './pokeDetailsScreenType';
 import style from '../../screens/details/PokeDetails.module.css';
 import { useParams } from 'react-router-dom';
 import { pokeStat } from '../../data/pokemonData';
