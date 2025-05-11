@@ -20,8 +20,8 @@ export const initialState: PokemonDetailsState = {
     height: 0,
     weight: 0,
     types: [],
-    sprite: ''
+    sprite: '',
   },
   isLoading: false,
-  error: null
+  error: null,
 };

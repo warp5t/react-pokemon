@@ -4,7 +4,7 @@ import pokeDetailsReducer from '../slicers/pokeDetails/detailsSlice';
 
 const rootReducer = {
   pokeList: pokeListReducer,
-  pokeDetails: pokeDetailsReducer
+  pokeDetails: pokeDetailsReducer,
 };
 
 export const store = configureStore({

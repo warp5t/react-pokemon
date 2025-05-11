@@ -27,15 +27,15 @@ export const PokeDetails: FC<PokeStat> = ({ name, height, weight, sprite, id }) 
 };
 
 export const PokeDetailsScreen = () => {
-  const { pokemonName } = useParams<{ pokemonName: string | undefined}>();
+  const { pokemonName } = useParams<{ pokemonName: string | undefined }>();
   const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeDetails.isLoading);
   const selectDetailPoke = useSelector((state: RootState) => state.pokeDetails.data);
   const error = useSelector((state: RootState) => state.pokeDetails.error);
   const dispatch = useDispatch<AppDispatch>();
 
-   useEffect(() => {
+  useEffect(() => {
     dispatch(getDetailsPokeThunks({ url: `https://pokeapi.co/api/v2/pokemon/${pokemonName}/` }));
-   }, [pokemonName]);
+  }, [pokemonName]);
 
   if (!!error) {
     return <div>Покемон не найден!</div>;
