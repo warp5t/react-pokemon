@@ -37,3 +37,7 @@
   justify-content: space-between;
   width: 140px;
 }
+
+.pokemons__btn_active {
+  background-color: #8eda43;
+}
