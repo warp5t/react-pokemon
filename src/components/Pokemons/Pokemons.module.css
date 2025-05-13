@@ -1,8 +1,3 @@
-.pokemons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
 .pokemons__item {
   display: flex;
   justify-content: space-between;
@@ -41,19 +36,4 @@
   display: flex;
   justify-content: space-between;
   width: 140px;
-}
-
-.pokemons__pagination {
-  width: 100%;
-}
-.pokemons__paginationWrap {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0;
-}
-.pokemons__paginationPage {
-  font-size: 22px;
-}
-.pokemons__paginationBtn {
-  width: 130px;
 }

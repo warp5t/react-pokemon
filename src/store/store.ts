@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import pokeListReducer from '../data/pokeSlice/pokeSlice'; // Default импорт
+import pokeListReducer from '../slicers/pokeSlice'; // Default импорт
 
 const rootReducer = {
   pokeList: pokeListReducer,

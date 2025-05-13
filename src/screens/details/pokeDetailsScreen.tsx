@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { PokeStat } from '../../interfaces/Pokemon';
-import style from '../../styles/pokeDetails/PokeDetails.module.css';
+import { PokeStat } from './pokeDetailsScreenType';
+import style from '../../screens/details/PokeDetails.module.css';
 import { useParams } from 'react-router-dom';
 import { pokeStat } from '../../data/pokemonData';
 import { capitalizing } from '../../utils/capitalizer';
@@ -23,7 +23,6 @@ export const PokeDetails: FC<PokeStat> = ({ name, height, weight, image, number 
 
 export const PokeDetailsScreen = () => {
   const { pokemonName } = useParams<{ pokemonName: string }>();
-  console.log(pokemonName);
   const poke = pokeStat.find((p) => p.name === pokemonName);
 
   if (!poke) {
