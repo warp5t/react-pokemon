@@ -51,10 +51,10 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
           <img src={comparison} alt='comparison' />
         </button>
       </div>
-        <button onClick={(e) => {
+        {/* <button onClick={(e) => {
           e.preventDefault()
           console.log('pokeFavorites: ', pokeFavorites)
-          }}>tech</button>
+          }}>tech</button> */}
     </Link>
   );
 };
