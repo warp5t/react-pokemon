@@ -1,15 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface PokemonFavor {
-  name: string,
-  id: number
-}
-
-interface InitialState {
-  pokemons: PokemonFavor[];
-  isLoading: boolean;
-  error: string | null
-}
+import { PokemonFavor, InitialState } from "./pokeFavoriteType";
 
 const initialState: InitialState = {
   pokemons: [
