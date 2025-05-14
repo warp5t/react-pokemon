@@ -4,33 +4,33 @@ import comparison from '../../assets/icon/arrows.png';
 import { Link } from 'react-router-dom';
 import { capitalizing } from '../../utils/capitalizer';
 import { PokeCardProps } from './pokemonsTyoe';
-import { useState } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFavoriteThunks, addFavoriteThunks } from '../../slicers/pokeFavorite/pokeFavorite';
 
-import { RootState } from '../../store/store';
+import { AppDispatch, RootState } from '../../store/store';
 const logging = (name: string) => {
   console.log(name);
 };
 
 export const PokeCard = ({ name, number }: PokeCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const dispatch = useDispatch();
+  // const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
 
   const pokeList = useSelector((state: RootState) => state.pokeList.data);
-  const pokeFavorites = useSelector((state: RootState) => state.pokeFavorites.pokemons)
+  const pokeFavorites = useSelector((state: RootState) =>
+      state.pokeFavorites.pokemons.some(pokemon => pokemon.name === name)
+    );
   const pokeDetails = useSelector((state: RootState) => state.pokeDetails.data)
 
-  const toggleFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const toggleFavorite = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setIsFavorite(prev => !prev);
-
-    if (isFavorite) {
-      dispatch(removeFavoriteThunks())
+    if (pokeFavorites) {
+      dispatch(removeFavoriteThunks({ url: `https://pokeapi.co/api/v2/pokemon/${name}` }));
     } else {
-      dispatch(addFavoriteThunks())
+      dispatch(addFavoriteThunks({ url: `https://pokeapi.co/api/v2/pokemon/${name}` }));
     }
-  };
+  }, [dispatch, name, pokeFavorites]);
 
   return (
     <Link
@@ -47,7 +47,7 @@ export const PokeCard = ({ name, number }: PokeCardProps) => {
       <div className={style.pokemons__wrapButton}>
       <button
           onClick={toggleFavorite}
-          className={isFavorite ? style.pokemons__btn_active : ''}
+          className={pokeFavorites ? style.pokemons__btn_active : ''}
         >
           <img src={favorites} alt='favorites' />
         </button>
