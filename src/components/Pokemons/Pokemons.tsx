@@ -6,7 +6,7 @@ import { capitalizing } from '../../utils/capitalizer';
 import { PokeCardProps } from './pokemonsTyoe';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavorite, removeFavorite } from '../../slicers/pokeFavorite/pokeFavorite';
+import { removeFavoriteThunks, addFavoriteThunks } from '../../slicers/pokeFavorite/pokeFavorite';
 
 import { RootState } from '../../store/store';
 const logging = (name: string) => {
@@ -26,9 +26,9 @@ export const PokeCard = ({ name, number }: PokeCardProps) => {
     setIsFavorite(prev => !prev);
 
     if (isFavorite) {
-      dispatch(removeFavorite())
+      dispatch(removeFavoriteThunks())
     } else {
-      dispatch(addFavorite())
+      dispatch(addFavoriteThunks())
     }
   };
 

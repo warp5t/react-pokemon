@@ -21,7 +21,7 @@ const initialState: InitialState = {
 };
 
 export const addFavoriteThunks = createAsyncThunk(
-  'favoriteList',
+  'favoriteList/addFavorite',
   async ({ url }: { url: string }) => {
     const response = await fetch(url);
 
@@ -38,24 +38,29 @@ export const addFavoriteThunks = createAsyncThunk(
   },
 );
 
+export const removeFavoriteThunks = createAsyncThunk(
+  'favoriteList/removeFavorite',
+
+    async ({ url }: { url: string }) => {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch Pokemon: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    return {
+      id: data.id
+    };
+  },
+);
+
+
 const pokeFavoriteSlice = createSlice({
   name: 'favoriteList',
   initialState,
-  reducers: {
-    addFavorite(state, action: PayloadAction<PokemonFavor>) {
-      const existingPokemon = state.pokemons.find(
-        pokemon => pokemon.id === action.payload.id
-      );
-      if (!existingPokemon) {
-        state.pokemons.push(action.payload)
-      }
-    },
-    removeFavorite(state, action: PayloadAction<number>) {
-      state.pokemons = state.pokemons.filter(
-        pokemon => pokemon.id !== action.payload
-      );
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
     .addCase(addFavoriteThunks.pending, (state) => {
@@ -74,9 +79,22 @@ const pokeFavoriteSlice = createSlice({
     .addCase(addFavoriteThunks.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message || 'Failed to add favorite';
+    })
+    .addCase(removeFavoriteThunks.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    })
+    .addCase(removeFavoriteThunks.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.pokemons = state.pokemons.filter(
+        pokemon => pokemon.id !== action.payload.id
+      );
+    })
+    .addCase(removeFavoriteThunks.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message || 'Failed to add favorite';
     });
   }
 });
 
-export const { addFavorite, removeFavorite } = pokeFavoriteSlice.actions;
 export default pokeFavoriteSlice.reducer;
