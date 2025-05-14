@@ -1,9 +1,8 @@
+import style from '../list/Pokemons.module.css';
 import { useEffect } from 'react';
 import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeSlice/pokeSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/store';
-import { AppDispatch } from '../../store/store';
-import style from '../list/Pokemons.module.css';
+import { RootState, AppDispatch  } from '../../store/store';
 import { PokeCard } from '../../components/Pokemons/Pokemons';
 
 export const PokemonsContainerScreen = () => {
