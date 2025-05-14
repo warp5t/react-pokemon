@@ -1,6 +1,3 @@
-import { FC } from 'react';
-// import { pokeStat } from '../../data/pokemonData';
-// import { PokeDetails } from '../details/pokeDetailsScreen';
 import { useEffect } from 'react';
 import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeSlice/pokeSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,23 +5,6 @@ import { RootState } from '../../store/store';
 import { AppDispatch } from '../../store/store';
 import style from '../list/Pokemons.module.css';
 import { PokeCard } from '../../components/Pokemons/Pokemons';
-
-export const PokeScreenList: FC = () => {
-  return (
-    <div>
-      {/* {pokeStat.map((comp) => (
-        <PokeDetails
-          key={`${comp.name}`}
-          name={comp.name}
-          height={comp.height}
-          weight={comp.weight}
-          sprite={comp.image}
-          id={comp.number}
-        />
-      ))} */}
-    </div>
-  );
-};
 
 export const PokemonsContainerScreen = () => {
   const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeList.isLoading);
@@ -48,7 +28,7 @@ export const PokemonsContainerScreen = () => {
           <PokeCard
             key={poke.name}
             name={poke.name}
-            number={Number(poke.url.split('/').filter(Boolean).pop() || '0')}
+            id={Number(poke.url.split('/').filter(Boolean).pop() || '0')}
           />
         ))}
       </div>
