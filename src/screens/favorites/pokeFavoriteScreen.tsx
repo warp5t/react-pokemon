@@ -1,8 +1,11 @@
-// import { pokeFavorite } from '../../data/pokemonData';
+
 // import { PokeCard } from '../../components/Pokemons/Pokemons';
+import { RootState } from '../../store/store';
 import style from '../../screens/favorites/Favorites.module.css';
+import { useSelector } from 'react-redux';
 
 export const FavoritePokes = () => {
+  const favoritesPoke = useSelector((state: RootState) => state.pokeFavorites)
   return (
     <div className={style.favorites}>
       <h2>Favorites</h2>

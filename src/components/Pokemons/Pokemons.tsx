@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { capitalizing } from '../../utils/capitalizer';
 import { PokeCardProps } from './pokemonsTyoe';
 import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 
 const logging = (name: string) => {
   console.log(name);
@@ -12,11 +13,19 @@ const logging = (name: string) => {
 
 export const PokeCard = ({ name, number }: PokeCardProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  // const dispatch = useDispatch();
 
   const toggleFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsFavorite(prev => !prev);
+
+    // if (isFavorite) {
+    //   dispatch()
+    // } else {
+    //   dispatch()
+    // }
   };
+
   return (
     <Link
       to={`/details/${name}`}

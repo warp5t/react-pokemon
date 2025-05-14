@@ -2,11 +2,9 @@ import { FC, useEffect } from 'react';
 import { PokeStat } from './pokeDetailsScreenType';
 import style from '../../screens/details/PokeDetails.module.css';
 import { useParams } from 'react-router-dom';
-// import { pokeStat } from '../../data/pokemonData';
 import { capitalizing } from '../../utils/capitalizer';
 import { getDetailsPokeThunks } from '../../slicers/pokeDetails/detailsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-// import { store } from '../../store/store';
 import { AppDispatch } from '../../store/store';
 import { RootState } from '../../store/store';
 
