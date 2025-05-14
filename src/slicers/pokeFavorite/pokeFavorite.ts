@@ -1,100 +1,37 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-interface PokemonFavor {
-  name: string,
-  id: number
-}
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface InitialState {
-  pokemons: PokemonFavor[];
+  pokemons: Array<string>;
   isLoading: boolean;
   error: string | null
 }
 
 const initialState: InitialState = {
-  pokemons: [
-    { name: 'bulbasaur', id: 1 },
-    { name: 'ivysaur', id: 2 }
-  ],
+  pokemons: ['bulbasaur', 'ivysaur'],
   isLoading: false,
   error: null,
 };
 
-export const addFavoriteThunks = createAsyncThunk(
-  'favoriteList/addFavorite',
-  async ({ url }: { url: string }) => {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch Pokemon: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    return {
-      name: data.name,
-      id: data.id
-    };
-  },
-);
-
-export const removeFavoriteThunks = createAsyncThunk(
-  'favoriteList/removeFavorite',
-
-    async ({ url }: { url: string }) => {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch Pokemon: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    return {
-      id: data.id
-    };
-  },
-);
-
-
 const pokeFavoriteSlice = createSlice({
   name: 'favoriteList',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-    .addCase(addFavoriteThunks.pending, (state) => {
-      state.isLoading = true;
-      state.error = null;
-    })
-    .addCase(addFavoriteThunks.fulfilled, (state, action) => {
-      state.isLoading = false;
+  reducers: {
+    addFavorite(state, action: PayloadAction<string>) {
       const existingPokemon = state.pokemons.find(
-        pokemon => pokemon.id === action.payload.id
+        pokemon => pokemon === action.payload
       );
       if (!existingPokemon) {
-        state.pokemons.push(action.payload);
+        state.pokemons.push(action.payload)
       }
-    })
-    .addCase(addFavoriteThunks.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message || 'Failed to add favorite';
-    })
-    .addCase(removeFavoriteThunks.pending, (state) => {
-      state.isLoading = true;
-      state.error = null;
-    })
-    .addCase(removeFavoriteThunks.fulfilled, (state, action) => {
-      state.isLoading = false;
+    },
+    removeFavorite(state, action: PayloadAction<string>) {
       state.pokemons = state.pokemons.filter(
-        pokemon => pokemon.id !== action.payload.id
+        pokemon => pokemon !== action.payload
       );
-    })
-    .addCase(removeFavoriteThunks.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message || 'Failed to add favorite';
-    });
-  }
+    }
+  },
+
 });
 
+export const { addFavorite, removeFavorite } = pokeFavoriteSlice.actions;
 export default pokeFavoriteSlice.reducer;
