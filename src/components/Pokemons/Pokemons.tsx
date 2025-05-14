@@ -13,23 +13,20 @@ const logging = (name: string) => {
   console.log(name);
 };
 
-export const PokeCard = ({ name, number }: PokeCardProps) => {
+export const PokeCard = ({ name, id }: PokeCardProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const pokeList = useSelector((state: RootState) => state.pokeList.data);
-  const pokeDetails = useSelector((state: RootState) => state.pokeDetails.data)
-
   const pokeFavorites = useSelector((state: RootState) => state.pokeFavorites.pokemons);
-  const isFavorite = pokeFavorites.some(pokemon => pokemon === name);
+  const isFavorite = pokeFavorites.some(pokemon => pokemon.name === name);
 
   const toggleFavorite = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (isFavorite) {
-      dispatch(removeFavorite(name));
+      dispatch(removeFavorite({name, id}));
     } else {
-      dispatch(addFavorite(name));
+      dispatch(addFavorite({name, id}));
     }
-  }, [dispatch, name, pokeFavorites]);
+  }, [dispatch, name, id, isFavorite]);
 
   return (
     <Link
@@ -41,7 +38,7 @@ export const PokeCard = ({ name, number }: PokeCardProps) => {
     >
       <div className={style.pokemons__wrapTitle}>
         <h3>{capitalizing(name)}</h3>
-        <div>#{number}</div>
+        <div>#{id}</div>
       </div>
       <div className={style.pokemons__wrapButton}>
       <button
@@ -53,14 +50,11 @@ export const PokeCard = ({ name, number }: PokeCardProps) => {
         <button onClick={(e) => e.preventDefault()}>
           <img src={comparison} alt='comparison' />
         </button>
+      </div>
         <button onClick={(e) => {
           e.preventDefault()
-          console.log(
-            'pokeList; ', pokeList,
-            '\npokeFavorites: ', pokeFavorites,
-            '\npokeDetails: ', pokeDetails)
+          console.log('pokeFavorites: ', pokeFavorites)
           }}>tech</button>
-      </div>
     </Link>
   );
 };

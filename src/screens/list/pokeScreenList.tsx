@@ -48,7 +48,7 @@ export const PokemonsContainerScreen = () => {
           <PokeCard
             key={poke.name}
             name={poke.name}
-            number={Number(poke.url.split('/').filter(Boolean).pop() || '0')}
+            id={Number(poke.url.split('/').filter(Boolean).pop() || '0')}
           />
         ))}
       </div>
