@@ -24,11 +24,11 @@ export const PokeDetails: FC<PokeStat> = ({ name, height, weight, sprite, id }) 
 };
 
 export const PokeDetailsScreen = () => {
-  const { pokemonName } = useParams<{ pokemonName: string | undefined }>();
-  const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeDetails.isLoading);
-  const selectDetailPoke = useSelector((state: RootState) => state.pokeDetails.data);
-  const error = useSelector((state: RootState) => state.pokeDetails.error);
-  const dispatch = useDispatch<AppDispatch>();
+    const { pokemonName } = useParams<{ pokemonName: string | undefined }>();
+    const selectIsPokemonLoading = useSelector((state: RootState) => state.pokeDetails.isLoading);
+    const selectDetailPoke = useSelector((state: RootState) => state.pokeDetails.data);
+    const error = useSelector((state: RootState) => state.pokeDetails.error);
+    const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getDetailsPokeThunks({ url: `https://pokeapi.co/api/v2/pokemon/${pokemonName}/` }));
