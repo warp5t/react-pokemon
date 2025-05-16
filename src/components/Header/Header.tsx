@@ -10,6 +10,9 @@ export const Header = () => {
           <Link to='/favorites' className={styles.header__btn}>
             Favorites
           </Link>
+          <Link to='/' className={styles.header__btn}>
+            Main
+          </Link>
           <Link to='/comparison' className={styles.header__btn}>
             Comparison
           </Link>
