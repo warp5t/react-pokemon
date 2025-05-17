@@ -3,7 +3,7 @@ interface PokemonDetails {
   name: string;
   height: number;
   weight: number;
-  types: string[];
+  // types: string[];
   sprite: string;
 }
 
@@ -19,7 +19,7 @@ export const initialState: PokemonDetailsState = {
     name: '',
     height: 0,
     weight: 0,
-    types: [],
+    // types: [],
     sprite: '',
   },
   isLoading: false,

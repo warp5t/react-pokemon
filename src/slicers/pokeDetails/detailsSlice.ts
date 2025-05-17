@@ -17,7 +17,6 @@ export const getDetailsPokeThunks = createAsyncThunk(
       name: data.name,
       height: data.height,
       weight: data.weight,
-      types: data.types.map((t: { type: { name: string } }) => t.type.name),
       sprite: data.sprites.other['official-artwork']['front_default'],
     };
   },
@@ -40,7 +39,6 @@ const pokeDetailsSlice = createSlice({
           name: action.payload.name,
           height: action.payload.height,
           weight: action.payload.weight,
-          types: action.payload.types,
           sprite: action.payload.sprite,
         };
       })
