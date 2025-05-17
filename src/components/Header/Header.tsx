@@ -12,7 +12,7 @@ export const Header = () => {
 
   const getSamePage = () => {
     if (!nextPage) {
-      console.error("nextPage is null or undefined");
+      console.error('nextPage is null or undefined');
       return;
     }
 

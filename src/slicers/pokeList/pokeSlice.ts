@@ -1,26 +1,26 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { initialState } from './pokeSlicerType';
 
-export const getInitialPokeThunks = createAsyncThunk(
-  'pokeList/fetchInitial',
-  async () => {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon-species');
-    return await response.json();
+export const getInitialPokeThunks = createAsyncThunk('pokeList/fetchInitial', async () => {
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon-species');
+  return await response.json();
 });
 
 export const getSamePageThunks = createAsyncThunk(
   'pokeList/fetchSamePage',
-  async ({ url }: { url: string;}) => {
+  async ({ url }: { url: string }) => {
     const response = await fetch(url);
     return await response.json();
-  });
+  },
+);
 
 export const getPagePokeThunks = createAsyncThunk(
   'pokeList/fetchPage',
   async ({ url }: { url: string; actionType: 'next' | 'previous' }) => {
     const response = await fetch(url);
     return await response.json();
-  });
+  },
+);
 
 const pokeListSlice = createSlice({
   name: 'pokeList',
@@ -70,7 +70,7 @@ const pokeListSlice = createSlice({
         state.error = action.error.message || 'Unknown error';
       })
       //------------------------------ samePage ---------------------
-      .addCase(getSamePageThunks.pending,(state) => {
+      .addCase(getSamePageThunks.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
@@ -81,13 +81,13 @@ const pokeListSlice = createSlice({
           next: action.payload.next,
           previous: action.payload.previous,
           results: action.payload.results,
-          currentPage: state.data.currentPage
+          currentPage: state.data.currentPage,
         };
       })
       .addCase(getSamePageThunks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Unknown error';
-      })
+      });
   },
 });
 
