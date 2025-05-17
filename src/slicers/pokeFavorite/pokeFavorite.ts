@@ -1,14 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PokemonFavor, InitialState } from "./pokeFavoriteType";
-
-const initialState: InitialState = {
-  pokemons: [
-    { name: 'bulbasaur', id: 1 },
-    { name: 'ivysaur', id: 2 }
-  ],
-  isLoading: false,
-  error: null,
-};
+import { PokemonFavor } from "./pokeFavoriteType";
+import { initialState } from "./pokeFavoriteType";
 
 const pokeFavoriteSlice = createSlice({
   name: 'favoriteList',

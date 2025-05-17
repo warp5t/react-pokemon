@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeLIst/pokeSlice';
+import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeList/pokeSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { AppDispatch } from '../../store/store';

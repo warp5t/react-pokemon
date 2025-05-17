@@ -8,3 +8,12 @@ export interface InitialState {
   isLoading: boolean;
   error: string | null
 }
+
+export const initialState: InitialState = {
+  pokemons: [
+    { name: 'bulbasaur', id: 1 },
+    { name: 'ivysaur', id: 2 }
+  ],
+  isLoading: false,
+  error: null,
+};
