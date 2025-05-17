@@ -81,7 +81,7 @@ const pokeListSlice = createSlice({
           next: action.payload.next,
           previous: action.payload.previous,
           results: action.payload.results,
-          currentPage: 1,
+          currentPage: state.data.currentPage
         };
       })
       .addCase(getSamePageThunks.rejected, (state, action) => {

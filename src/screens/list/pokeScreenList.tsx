@@ -16,9 +16,7 @@ export const PokemonsContainerScreen = () => {
   const isInitialLoaded = useSelector((state: RootState) => state.pokeList.isInitialLoaded);
 
   useEffect(() => {
-    if (isInitialLoaded) {
-      // dispatch(getSamePageThunks(currentPage))
-    } else {
+    if (!isInitialLoaded) {
       dispatch(getInitialPokeThunks());
     }
   }, []);
