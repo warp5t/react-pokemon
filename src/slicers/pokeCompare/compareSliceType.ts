@@ -1,4 +1,4 @@
-interface PokemonCompare {
+export interface PokemonCompare {
   id: number;
   name: string;
   height: number;
@@ -8,25 +8,39 @@ interface PokemonCompare {
   stats: Stats
 }
 
-interface PokemonConpareState {
+interface PokemonCompareState {
   data: PokemonCompare;
   isLoading: boolean;
   error: string | null;
 }
 
-interface Stats {
+export interface Stats {
   hp: number,
   attack: number,
   defense: number,
   speed: number,
 }
 
-interface Abilities {
+export interface Abilities {
   name: string,
   is_hidden: boolean
 }
 
-export const initialState: PokemonConpareState = {
+export interface ApiAbility {
+  ability: {
+    name: string;
+  };
+  is_hidden: boolean;
+}
+
+export interface ApiStat {
+  stat: {
+    name: string;
+  };
+  base_stat: number;
+}
+
+export const initialState: PokemonCompareState = {
   data: {
     id: 1,
     name: '',
