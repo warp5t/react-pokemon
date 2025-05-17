@@ -14,6 +14,7 @@ const logging = (name: string) => {
 };
 
 export const PokeCard = ({ name, id }: PokeCardProps) => {
+
   const dispatch = useDispatch<AppDispatch>();
 
   const pokeFavorites = useSelector((state: RootState) => state.pokeFavorites.pokemons);
@@ -51,10 +52,6 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
           <img src={comparison} alt='comparison' />
         </button>
       </div>
-        {/* <button onClick={(e) => {
-          e.preventDefault()
-          console.log('pokeFavorites: ', pokeFavorites)
-          }}>tech</button> */}
     </Link>
   );
 };
