@@ -7,6 +7,7 @@ import { getDetailsPokeThunks } from '../../slicers/pokeDetails/detailsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 
+
 export const PokeDetails: FC<PokeStat> = ({ name, height, weight, sprite, id }) => {
   return (
     <div className={style.pokeStat}>
