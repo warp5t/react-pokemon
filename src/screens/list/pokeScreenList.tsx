@@ -5,15 +5,22 @@ import { RootState } from '../../store/store';
 import { AppDispatch } from '../../store/store';
 import style from '../list/Pokemons.module.css';
 import { PokeCard } from '../../components/Pokemons/Pokemons';
+// import { getSamePageThunks } from '../../slicers/pokeSlice/pokeSlice';
 
 export const PokemonsContainerScreen = () => {
   const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeList.isLoading);
   const selectDataPoke = useSelector((state: RootState) => state.pokeList.data.results || []);
   const error = useSelector((state: RootState) => state.pokeList.error);
   const dispatch = useDispatch<AppDispatch>();
+  // const currentPage = useSelector((state: RootState) => state.pokeList.data.);
+  const isInitialLoaded = useSelector((state: RootState) => state.pokeList.isInitialLoaded);
 
   useEffect(() => {
-    dispatch(getInitialPokeThunks());
+    if (isInitialLoaded) {
+      // dispatch(getSamePageThunks(currentPage))
+    } else {
+      dispatch(getInitialPokeThunks());
+    }
   }, []);
 
   if (selectIsPokemonsLoading) {

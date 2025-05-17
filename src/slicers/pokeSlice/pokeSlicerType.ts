@@ -2,6 +2,7 @@ export interface PokeResults {
   data: DataPoke;
   isLoading: boolean;
   error: string | null;
+  isInitialLoaded: boolean;
 }
 
 interface InfoPoke {
@@ -27,4 +28,5 @@ export const initialState: PokeResults = {
   },
   isLoading: false,
   error: null,
+  isInitialLoaded: false,
 };

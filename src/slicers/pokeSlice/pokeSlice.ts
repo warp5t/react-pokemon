@@ -34,6 +34,7 @@ const pokeListSlice = createSlice({
       })
       .addCase(getInitialPokeThunks.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isInitialLoaded = true;
         state.data = {
           count: action.payload.count,
           next: action.payload.next,
