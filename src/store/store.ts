@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import pokeListReducer from '../slicers/pokeSlice/pokeSlice';
+import pokeListReducer from '../slicers/pokeLIst/pokeSlice';
 import pokeDetailsReducer from '../slicers/pokeDetails/detailsSlice';
 import favoritesReducer from '../slicers/pokeFavorite/pokeFavorite'
 

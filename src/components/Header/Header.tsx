@@ -3,7 +3,7 @@ import styles from '../../components/Header/Header.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store/store';
-import { getSamePageThunks } from '../../slicers/pokeSlice/pokeSlice';
+import { getSamePageThunks } from '../../slicers/pokeLIst/pokeSlice';
 
 export const Header = () => {
   const nextPage = useSelector((state: RootState) => state.pokeList.data.next);
