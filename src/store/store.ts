@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import pokeListReducer from '../slicers/pokeLIst/pokeSlice';
 import pokeDetailsReducer from '../slicers/pokeDetails/detailsSlice';
 import favoritesReducer from '../slicers/pokeFavorite/pokeFavorite'
+import compareReducer from '../slicers/pokeCompare/compareSlice';
 
 const rootReducer = {
   pokeList: pokeListReducer,
   pokeDetails: pokeDetailsReducer,
-  pokeFavorites: favoritesReducer
+  pokeFavorites: favoritesReducer,
+  pokeCompare: compareReducer
 };
 
 export const store = configureStore({

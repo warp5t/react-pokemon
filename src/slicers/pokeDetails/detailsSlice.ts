@@ -1,14 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { initialState } from './detailsSliceType';
 
-// export const getDetailsPokeThunks = createAsyncThunk(
-//   'pokeDetails/fetchDetails',
-//   async ({ url }: { url: string; }) => {
-//     const response = await fetch(url);
-//     return await response.json();
-//   }
-// );
-
 export const getDetailsPokeThunks = createAsyncThunk(
   'pokeDetails/fetchDetails',
   async ({ url }: { url: string }) => {
