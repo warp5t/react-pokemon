@@ -1,7 +1,7 @@
 export interface PokeStat {
-  number: number;
+  id: number;
   name: string;
   height: number;
   weight: number;
-  image: string;
+  sprite: string;
 }

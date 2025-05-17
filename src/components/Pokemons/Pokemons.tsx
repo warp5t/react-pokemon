@@ -5,16 +5,22 @@ import { Link } from 'react-router-dom';
 import { capitalizing } from '../../utils/capitalizer';
 import { PokeCardProps } from './pokemonsTyoe';
 
-const logging = (name:string) => {
-  console.log(name)
-}
+const logging = (name: string) => {
+  console.log(name);
+};
 
-export const PokeCard = ({ name, number }: PokeCardProps) => {
+export const PokeCard = ({ name, id }: PokeCardProps) => {
   return (
-    <Link to={`/details/${name}`} className={style.pokemons__item} onClick={() => {logging(name)}}>
+    <Link
+      to={`/details/${name}`}
+      className={style.pokemons__item}
+      onClick={() => {
+        logging(name);
+      }}
+    >
       <div className={style.pokemons__wrapTitle}>
         <h3>{capitalizing(name)}</h3>
-        <div>#{number}</div>
+        <div>#{id}</div>
       </div>
       <div className={style.pokemons__wrapButton}>
         <button onClick={(e) => e.preventDefault()}>
@@ -27,4 +33,3 @@ export const PokeCard = ({ name, number }: PokeCardProps) => {
     </Link>
   );
 };
-

@@ -1,39 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { initialState } from './pokeSlicerType';
 
-export interface PokeResults {
-  data: DataPoke;
-  isLoading: boolean;
-  error: string | null;
-}
-
-interface InfoPoke {
-  name: string;
-  url: string;
-}
-
-interface DataPoke {
-  count: number;
-  next: string | null;
-  previous: null | string;
-  results: InfoPoke[];
-  currentPage: number;
-}
-
-const initialState: PokeResults = {
-  data: {
-    count: 0,
-    next: null,
-    previous: null,
-    results: [],
-    currentPage: 1,
-  },
-  isLoading: false,
-  error: null,
-};
-
-export const getInitialPokeThunks = createAsyncThunk(
-  'pokeList/fetchInitial',
-  async () => {
+export const getInitialPokeThunks = createAsyncThunk('pokeList/fetchInitial', async () => {
   const response = await fetch('https://pokeapi.co/api/v2/pokemon-species');
   return await response.json();
 });
@@ -43,7 +11,7 @@ export const getPagePokeThunks = createAsyncThunk(
   async ({ url }: { url: string; actionType: 'next' | 'previous' }) => {
     const response = await fetch(url);
     return await response.json();
-  }
+  },
 );
 
 const pokeListSlice = createSlice({
@@ -81,9 +49,10 @@ const pokeListSlice = createSlice({
           next: action.payload.next,
           previous: action.payload.previous,
           results: action.payload.results,
-          currentPage: action.meta.arg.actionType === 'next'
-          ? state.data.currentPage + 1
-          : state.data.currentPage - 1,
+          currentPage:
+            action.meta.arg.actionType === 'next'
+              ? state.data.currentPage + 1
+              : state.data.currentPage - 1,
         };
       })
       .addCase(getPagePokeThunks.rejected, (state, action) => {

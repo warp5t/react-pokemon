@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { pokeCompare } from '../../data/pokemonData';
+// import { pokeCompare } from '../../data/pokemonData';
 import { TablePoke } from './comparisonType';
 import deleteIcon from '../../assets/icon/delete.png';
 import style from '../../screens/comparison/Comparision.module.css';
@@ -11,14 +11,14 @@ export const CompareScreen = () => {
     <div className={style.compareSreen}>
       <h2 className={style.compareSreen__title}>Compare Pokemons</h2>
       <div className={style.compareSreen__cardBox}>
-        {pokeCompare.map((poke) => (
+        {/* {pokeCompare.map((poke) => (
           <PokeStatTable
             key={poke.name}
             name={poke.name}
             weight={poke.weight}
             height={poke.height}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );
