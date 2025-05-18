@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { initialState, PokemonCompare, ApiAbility, ApiStat } from './compareSliceType';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 export const getComparePokeThunks = createAsyncThunk(
   'pokeComapare/compare',
@@ -36,7 +37,11 @@ export const getComparePokeThunks = createAsyncThunk(
 const pokeCompareSlice = createSlice({
   name: 'pokeComare',
   initialState,
-  reducers: {},
+  reducers: {
+    removeComparePokemon: (state, action: PayloadAction<number>) => {
+      state.data = state.data.filter(pokemon => pokemon.id !== action.payload);
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getComparePokeThunks.pending, (state) => {
@@ -45,6 +50,7 @@ const pokeCompareSlice = createSlice({
       })
       .addCase(getComparePokeThunks.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.data.filter((pokemon) => pokemon.id !== action.payload.id)
         if (state.data.length < 2) {
           state.data.push(action.payload);
         } else {
@@ -57,5 +63,7 @@ const pokeCompareSlice = createSlice({
       });
   },
 })
+
+export const {removeComparePokemon} = pokeCompareSlice.actions;
 
 export default pokeCompareSlice.reducer;
