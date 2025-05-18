@@ -50,11 +50,18 @@ const pokeCompareSlice = createSlice({
       })
       .addCase(getComparePokeThunks.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data.filter((pokemon) => pokemon.id !== action.payload.id)
-        if (state.data.length < 2) {
-          state.data.push(action.payload);
+        state.error = null;
+
+        const existingIndex = state.data.findIndex((poke) => poke.id === action.payload.id);
+
+        if (existingIndex >= 0) {
+          state.data.splice(existingIndex, 1);
         } else {
-          state.error = "Maximum 2 Pokemon for comparison";
+          if (state.data.length < 2) {
+            state.data.push(action.payload);
+          } else {
+            state.error = "Maximum 2 Pokemon for comparison";
+          }
         }
       })
       .addCase(getComparePokeThunks.rejected, (state, action) => {
