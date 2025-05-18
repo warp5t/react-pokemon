@@ -8,6 +8,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../slicers/pokeFavorite/pokeFavorite';
 import { AppDispatch, RootState } from '../../store/store';
+import { getComparePokeThunks } from '../../slicers/pokeCompare/compareSlice';
 
 const logging = (name: string) => {
   console.log(name);
@@ -18,6 +19,11 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
 
   const pokeFavorites = useSelector((state: RootState) => state.pokeFavorites.pokemons);
   const isFavorite = pokeFavorites.some((pokemon) => pokemon.name === name);
+  // const pokeCompareName = useSelector((state: RootState) => state.pokeCompare.data.name);
+  const pokeCompare = useSelector((state: RootState) => state.pokeCompare);
+  // const isCompare = name === pokeCompareName;
+  const isCompare = useSelector((state: RootState) =>
+    state.pokeCompare.data.some(pokemon => pokemon.name === name));
 
   const toggleFavorite = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -30,6 +36,18 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
     },
     [dispatch, name, id, isFavorite],
   );
+
+  const toogleCompare = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    dispatch(getComparePokeThunks({ url: `https://pokeapi.co/api/v2/pokemon/${name}/` }))
+  }
+
+  const pokeFavor = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    console.log(isCompare);
+    // console.log('pokeCompareName: ', pokeCompareName);
+    console.log('pokeCompare: ', pokeCompare);
+  }
 
   return (
     <Link
@@ -47,14 +65,11 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
         <button onClick={toggleFavorite} className={isFavorite ? style.pokemons__btn_active : ''}>
           <img src={favorites} alt='favorites' />
         </button>
-        <button onClick={(e) => e.preventDefault()}>
+        <button onClick={toogleCompare} className={isCompare ? style.pokemons__btn_active1 : ''}>
           <img src={comparison} alt='comparison' />
         </button>
+        <button onClick={pokeFavor}>statPoke</button>
       </div>
-      {/* <button onClick={(e) => {
-          e.preventDefault()
-          console.log('pokeFavorites: ', pokeFavorites)
-          }}>tech</button> */}
     </Link>
   );
 };

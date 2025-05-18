@@ -18,16 +18,17 @@ export const getComparePokeThunks = createAsyncThunk(
       height: data.height,
       weight: data.weight,
       sprite: data.sprites.other['official-artwork']['front_default'],
-      abilities: data.abilities.map((a: ApiAbility) => ({
-        name: a.ability.name,
-        is_hidden: a.is_hidden
+      abilities: data.abilities.map((ablt: ApiAbility) => ({
+        name: ablt.ability.name,
+        is_hidden: ablt.is_hidden
       })),
       stats: {
-        hp: data.stats.find((s: ApiStat) => s.stat.name === 'hp').base_stat,
-        attack: data.stats.find((s: ApiStat) => s.stat.name === 'attack').base_stat,
-        defense: data.stats.find((s: ApiStat) => s.stat.name === 'defense').base_stat,
-        speed: data.stats.find((s: ApiStat) => s.stat.name === 'speed').base_stat
-      }
+        hp: data.stats.find((sts: ApiStat) => sts.stat.name === 'hp').base_stat,
+        attack: data.stats.find((sts: ApiStat) => sts.stat.name === 'attack').base_stat,
+        defense: data.stats.find((sts: ApiStat) => sts.stat.name === 'defense').base_stat,
+        speed: data.stats.find((sts: ApiStat) => sts.stat.name === 'speed').base_stat
+      },
+      types: data.types
     }
   }
 )
@@ -44,7 +45,11 @@ const pokeCompareSlice = createSlice({
       })
       .addCase(getComparePokeThunks.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data = action.payload;
+        if (state.data.length < 2) {
+          state.data.push(action.payload);
+        } else {
+          state.error = "Maximum 2 Pokemon for comparison";
+        }
       })
       .addCase(getComparePokeThunks.rejected, (state, action) => {
         state.isLoading = false;
