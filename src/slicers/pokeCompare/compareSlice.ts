@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { initialState, PokemonCompare, ApiAbility, ApiStat, ApiTypes } from './compareSliceType';
+import { initialState, PokemonCompare, ApiAbility, ApiStat } from './compareSliceType';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 export const getComparePokeThunks = createAsyncThunk(

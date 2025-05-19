@@ -49,14 +49,6 @@ export interface ApiStat {
   base_stat: number;
 }
 
-export interface ApiTypes {
-  slot: number;
-  type: {
-    name: string;
-    url: string;
-  };
-}
-
 export const initialState: PokemonCompareState = {
   data: [],
   isLoading: false,

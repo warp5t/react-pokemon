@@ -12,13 +12,6 @@ export const CompareScreen = () => {
     <div className={style.compareSreen}>
       <h2 className={style.compareSreen__title}>Compare Pokemons</h2>
       <div className={style.compareSreen__cardBox}>
-        {/* <button
-          onClick={() => {
-            console.log('comparePokemons: ', comparePokemons);
-          }}
-        >
-          log
-        </button> */}
         {comparePokemons.map((poke) => (
           <PokeStatTable pokemon={poke} key={poke.id} />
         ))}

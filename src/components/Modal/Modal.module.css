@@ -12,7 +12,7 @@
   height: 100vh;
   border: 2px solid rgb(145, 67, 67);
   border-radius: 6px;
-  background-color: rgba(218, 238, 255, 0.548);
+  background-color: rgba(80, 216, 27, 0.356);
   padding: 15px;
   z-index: 100;
 }
@@ -20,7 +20,7 @@
   font-size: 30px;
   text-align: center;
   padding: 0 0 10px 0;
-  color: rgb(56, 54, 196);
+  color: rgb(255, 255, 255);
 }
 
 .modal__btn {

@@ -37,7 +37,9 @@ export const PokemonsContainerScreen = () => {
   if (selectIsPokemonsLoading) {
     return <p>Loading pokemons...</p>;
   }
-  if (error) return <p>Error: {error}</p>;
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <>
