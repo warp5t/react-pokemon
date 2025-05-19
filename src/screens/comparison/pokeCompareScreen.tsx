@@ -34,13 +34,13 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
 
   return (
     <div className={style.pokeContainer}>
-      {/* Заголовок с именем и ID */}
+      {/* Header with name and ID */}
       <div className={style.pokeHeader}>
         <h2 className={style.pokeName}>{capitalizing(pokemon.name)}</h2>
         <span className={style.pokeId}>#{pokemon.id}</span>
       </div>
 
-      {/* Основное изображение */}
+      {/* Main image */}
       <div className={style.pokeImageWrapper}>
         <img src={pokemon.sprite} alt={pokemon.name} className={style.pokeImage} />
       </div>
@@ -49,7 +49,7 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
           <img src={deleteIcon} alt='delete' />
         </button>
       </div>
-      {/* Типы покемона */}
+      {/* Types pokemon's */}
       <div className={style.pokeTypes}>
         {pokemon.types.map((typeObj) => (
           <span key={pokemon.id} className={style.techPlug}>
@@ -58,7 +58,7 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
         ))}
       </div>
 
-      {/* Физические характеристики */}
+      {/* Physical characteristics*/}
       <div className={style.pokePhysical}>
         <div className={style.physicalStat}>
           <span className={style.statLabel}>Height:</span>
@@ -70,7 +70,7 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
         </div>
       </div>
 
-      {/* Базовые статистики */}
+      {/* Base stats */}
       <div className={style.pokeStats}>
         <h3 className={style.statsTitle}>Base Stats</h3>
         <div className={style.statRow}>
@@ -115,7 +115,7 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
         </div>
       </div>
 
-      {/* Способности */}
+      {/* Capabilities */}
       <div className={style.pokeAbilities}>
         <h3 className={style.abilitiesTitle}>Abilities</h3>
         <ul className={style.abilitiesList}>

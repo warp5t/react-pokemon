@@ -43,6 +43,154 @@
   gap: 16px;
 }
 
-.techPlug {
-  padding: 0;
+/* ------------------------------------------------ */
+
+.poke-table {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
 }
+
+/* -------------------------- */
+.poke-table__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.poke-table__name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.poke-table__id {
+  font-size: 18px;
+  color: #666;
+}
+
+/* ------------------------------------ */
+.poke-table__image-wrapper {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.poke-table__image {
+  width: 120px;
+  height: 120px;
+}
+
+/* ------------------------------- */
+.poke-table__delete {
+  text-align: right;
+  margin-bottom: 8px;
+}
+
+.poke-table__delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.poke-table__delete-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Типы покемона */
+.poke-table__types {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.poke-table__type {
+  padding: 4px 8px;
+  background-color: #eee;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* ------------------------------- */
+.poke-table__physical {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 16px;
+}
+
+.poke-table__physical-stat {
+  text-align: center;
+}
+
+.poke-table__label {
+  font-weight: bold;
+  display: block;
+}
+
+.poke-table__value {
+  font-size: 14px;
+}
+
+/* ---------------------------------------- */
+.poke-table__stats {
+  margin-bottom: 16px;
+}
+
+.poke-table__stats-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.poke-table__stat-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.poke-table__stat-name {
+  width: 70px;
+  font-weight: bold;
+}
+
+.poke-table__stat-bar {
+  flex: 1;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 8px;
+}
+
+.poke-table__stat-bar-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+
+/* ------------------------------ */
+.poke-table__abilities-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.poke-table__abilities-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.poke-table__ability-item {
+  margin-bottom: 4px;
+}
+
+.poke-table__hidden-tag {
+  color: #888;
+  margin-left: 4px;
+  font-size: 12px;
+  font-style: italic;
+}
+
