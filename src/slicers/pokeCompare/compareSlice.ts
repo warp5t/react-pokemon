@@ -59,7 +59,7 @@ const pokeCompareSlice = createSlice({
         } else {
           if (state.data.length < 2) {
             state.data.push(action.payload);
-          } else {
+          } else if (state.data.length >= 2) {
             state.error = "Maximum 2 Pokemon for comparison";
           }
         }

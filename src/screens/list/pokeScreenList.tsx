@@ -1,33 +1,51 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeList/pokeSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { AppDispatch } from '../../store/store';
 import style from '../list/Pokemons.module.css';
 import { PokeCard } from '../../components/Pokemons/Pokemons';
-// import { getSamePageThunks } from '../../slicers/pokeSlice/pokeSlice';
+import { Modal } from '../../components/Modal/Modal';
 
 export const PokemonsContainerScreen = () => {
   const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeList.isLoading);
   const selectDataPoke = useSelector((state: RootState) => state.pokeList.data.results || []);
   const error = useSelector((state: RootState) => state.pokeList.error);
   const dispatch = useDispatch<AppDispatch>();
-  // const currentPage = useSelector((state: RootState) => state.pokeList.data.);
   const isInitialLoaded = useSelector((state: RootState) => state.pokeList.isInitialLoaded);
+  const [showModal, setShowModal] = useState(false);
+  const pokeErrorCompare = useSelector((state: RootState) => state.pokeCompare.error);
+  const lengthComparePoke = useSelector((state:RootState) => state.pokeFavorites.pokemons.length)
 
+  const modalSwitch = () => {
+    setShowModal((showModal) => !showModal);
+  }
   useEffect(() => {
     if (!isInitialLoaded) {
       dispatch(getInitialPokeThunks());
     }
   }, []);
 
+  useEffect(() => {
+    if (lengthComparePoke === 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
+      modalSwitch()
+    }
+  },[pokeErrorCompare])
+
   if (selectIsPokemonsLoading) {
     return <p>Loading pokemons...</p>;
   }
   if (error) return <p>Error: {error}</p>;
 
+
   return (
     <>
+          <div>
+            <button onClick={modalSwitch}>Modal window</button>
+            {showModal && (
+              <Modal toggle={modalSwitch} />
+            )}
+          </div>
       <div className={style.pokemons}>
         {selectDataPoke.map((poke) => (
           <PokeCard
