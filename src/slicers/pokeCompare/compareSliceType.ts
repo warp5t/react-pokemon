@@ -5,8 +5,8 @@ export interface PokemonCompare {
   weight: number;
   types: Array<String>;
   sprite: string;
-  abilities: Array<Abilities>,
-  stats: Stats
+  abilities: Array<Abilities>;
+  stats: Stats;
 }
 
 interface PokemonCompareState {
@@ -16,15 +16,15 @@ interface PokemonCompareState {
 }
 
 export interface Stats {
-  hp: number,
-  attack: number,
-  defense: number,
-  speed: number,
+  hp: number;
+  attack: number;
+  defense: number;
+  speed: number;
 }
 
 export interface Abilities {
-  name: string,
-  is_hidden: boolean
+  name: string;
+  is_hidden: boolean;
 }
 
 export interface ApiAbility {
@@ -45,4 +45,4 @@ export const initialState: PokemonCompareState = {
   data: [],
   isLoading: false,
   error: null,
-}
+};

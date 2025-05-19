@@ -4,7 +4,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 export const getComparePokeThunks = createAsyncThunk(
   'pokeComapare/compare',
-  async({ url }: { url: string }): Promise<PokemonCompare> => {
+  async ({ url }: { url: string }): Promise<PokemonCompare> => {
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -21,26 +21,26 @@ export const getComparePokeThunks = createAsyncThunk(
       sprite: data.sprites.other['official-artwork']['front_default'],
       abilities: data.abilities.map((ablt: ApiAbility) => ({
         name: ablt.ability.name,
-        is_hidden: ablt.is_hidden
+        is_hidden: ablt.is_hidden,
       })),
       stats: {
         hp: data.stats.find((sts: ApiStat) => sts.stat.name === 'hp').base_stat,
         attack: data.stats.find((sts: ApiStat) => sts.stat.name === 'attack').base_stat,
         defense: data.stats.find((sts: ApiStat) => sts.stat.name === 'defense').base_stat,
-        speed: data.stats.find((sts: ApiStat) => sts.stat.name === 'speed').base_stat
+        speed: data.stats.find((sts: ApiStat) => sts.stat.name === 'speed').base_stat,
       },
-      types: data.types
-    }
-  }
-)
+      types: data.types,
+    };
+  },
+);
 
 const pokeCompareSlice = createSlice({
   name: 'pokeComare',
   initialState,
   reducers: {
     removeComparePokemon: (state, action: PayloadAction<number>) => {
-      state.data = state.data.filter(pokemon => pokemon.id !== action.payload);
-    }
+      state.data = state.data.filter((pokemon) => pokemon.id !== action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -60,7 +60,7 @@ const pokeCompareSlice = createSlice({
           if (state.data.length < 2) {
             state.data.push(action.payload);
           } else if (state.data.length >= 2) {
-            state.error = "Maximum 2 Pokemon for comparison";
+            state.error = 'Maximum 2 Pokemon for comparison';
           }
         }
       })
@@ -69,8 +69,8 @@ const pokeCompareSlice = createSlice({
         state.error = action.error.message || 'Unknown error';
       });
   },
-})
+});
 
-export const {removeComparePokemon} = pokeCompareSlice.actions;
+export const { removeComparePokemon } = pokeCompareSlice.actions;
 
 export default pokeCompareSlice.reducer;

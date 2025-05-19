@@ -11,7 +11,6 @@ import { AppDispatch, RootState } from '../../store/store';
 import { getComparePokeThunks } from '../../slicers/pokeCompare/compareSlice';
 import { removeComparePokemon } from '../../slicers/pokeCompare/compareSlice';
 
-
 const logging = (name: string) => {
   console.log(name);
 };
@@ -24,13 +23,12 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
   const pokeCompareData = useSelector((state: RootState) => state.pokeCompare.data);
   const pokeErrorCompare = useSelector((state: RootState) => state.pokeCompare.error);
   const isCompare = useSelector((state: RootState) =>
-    state.pokeCompare.data.some(pokemon => pokemon.name === name));
+    state.pokeCompare.data.some((pokemon) => pokemon.name === name),
+  );
 
   useEffect(() => {
     console.log('link is changed: ', pokeErrorCompare);
-
-  },[pokeErrorCompare])
-
+  }, [pokeErrorCompare]);
 
   const toggleFavorite = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -45,22 +43,20 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
   );
 
   const toogleCompare = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    const isAlreadyCompared = pokeCompareData.some(poke => poke.name === name);
+    e.preventDefault();
+    const isAlreadyCompared = pokeCompareData.some((poke) => poke.name === name);
     if (isAlreadyCompared) {
       dispatch(removeComparePokemon(Number(id)));
     } else {
       dispatch(getComparePokeThunks({ url: `https://pokeapi.co/api/v2/pokemon/${name}/` }));
     }
-  }
-
-
+  };
 
   const infoLOG = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log('pokeCompareData: ', pokeCompareData);
     console.log('pokeErrorCompare: ', pokeErrorCompare);
-  }
+  };
 
   return (
     <Link

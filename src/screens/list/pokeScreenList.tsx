@@ -15,11 +15,11 @@ export const PokemonsContainerScreen = () => {
   const isInitialLoaded = useSelector((state: RootState) => state.pokeList.isInitialLoaded);
   const [showModal, setShowModal] = useState(false);
   const pokeErrorCompare = useSelector((state: RootState) => state.pokeCompare.error);
-  const lengthComparePoke = useSelector((state:RootState) => state.pokeFavorites.pokemons.length)
+  const lengthComparePoke = useSelector((state: RootState) => state.pokeFavorites.pokemons.length);
 
   const modalSwitch = () => {
     setShowModal((showModal) => !showModal);
-  }
+  };
   useEffect(() => {
     if (!isInitialLoaded) {
       dispatch(getInitialPokeThunks());
@@ -28,24 +28,18 @@ export const PokemonsContainerScreen = () => {
 
   useEffect(() => {
     if (lengthComparePoke === 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
-      modalSwitch()
+      modalSwitch();
     }
-  },[pokeErrorCompare])
+  }, [pokeErrorCompare]);
 
   if (selectIsPokemonsLoading) {
     return <p>Loading pokemons...</p>;
   }
   if (error) return <p>Error: {error}</p>;
 
-
   return (
     <>
-          <div>
-            <button onClick={modalSwitch}>Modal window</button>
-            {showModal && (
-              <Modal toggle={modalSwitch} />
-            )}
-          </div>
+      <div>{showModal && <Modal toggle={modalSwitch} />}</div>
       <div className={style.pokemons}>
         {selectDataPoke.map((poke) => (
           <PokeCard

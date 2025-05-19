@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { TablePoke } from './comparisonType';
 import deleteIcon from '../../assets/icon/delete.png';
 import style from '../../screens/comparison/Comparision.module.css';
-import { useSelector, useDispatch  } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../store/store';
 import { getComparePokeThunks } from '../../slicers/pokeCompare/compareSlice';
 
@@ -24,10 +24,20 @@ export const CompareScreen = () => {
             height={poke.height}
           />
         ))} */}
-        <button onClick={() => {
-          dispatch(getComparePokeThunks({ url: `https://pokeapi.co/api/v2/pokemon/pikachu/` }))
-        }}>pokemon</button>
-        <button onClick={() => {console.log(comparePokemon)}}>store</button>
+        <button
+          onClick={() => {
+            dispatch(getComparePokeThunks({ url: `https://pokeapi.co/api/v2/pokemon/pikachu/` }));
+          }}
+        >
+          pokemon
+        </button>
+        <button
+          onClick={() => {
+            console.log(comparePokemon);
+          }}
+        >
+          store
+        </button>
       </div>
     </div>
   );
