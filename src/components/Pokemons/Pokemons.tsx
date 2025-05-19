@@ -52,12 +52,6 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
     }
   };
 
-  const infoLOG = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log('pokeCompareData: ', pokeCompareData);
-    console.log('pokeErrorCompare: ', pokeErrorCompare);
-  };
-
   return (
     <Link
       to={`/details/${name}`}
@@ -69,7 +63,6 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
       <div className={style.pokemons__wrapTitle}>
         <h3>{capitalizing(name)}</h3>
         <div>#{id}</div>
-        <button onClick={infoLOG}>statPoke</button>
       </div>
       <div className={style.pokemons__wrapButton}>
         <button onClick={toggleFavorite} className={isFavorite ? style.pokemons__btn_active : ''}>
