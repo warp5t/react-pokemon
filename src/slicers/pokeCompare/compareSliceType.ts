@@ -1,9 +1,17 @@
+interface PokemonType {
+  slot: number;
+  type: {
+    name: string;
+    url: string;
+  };
+}
+
 export interface PokemonCompare {
   id: number;
   name: string;
   height: number;
   weight: number;
-  types: Array<String>;
+  types: Array<PokemonType>;
   sprite: string;
   abilities: Array<Abilities>;
   stats: Stats;
@@ -39,6 +47,14 @@ export interface ApiStat {
     name: string;
   };
   base_stat: number;
+}
+
+export interface ApiTypes {
+  slot: number;
+  type: {
+    name: string;
+    url: string;
+  };
 }
 
 export const initialState: PokemonCompareState = {

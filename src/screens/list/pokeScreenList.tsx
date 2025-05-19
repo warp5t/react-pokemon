@@ -20,7 +20,7 @@ export const PokemonsContainerScreen = () => {
   const modalSwitch = () => {
     setShowModal((showModal) => !showModal);
     const body = document.getElementById('body');
-    body?.classList.toggle(style.scrollStop)
+    body?.classList.toggle(style.scrollStop);
   };
   useEffect(() => {
     if (!isInitialLoaded) {
