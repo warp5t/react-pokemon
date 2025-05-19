@@ -24,8 +24,7 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
   const formatStat = (value: number) => value.toString().padStart(3, ' ');
   const formatWeight = (weight: number) => (weight / 10).toFixed(1);
   const formatHeight = (height: number) => (height / 10).toFixed(1);
-  const dispatch = useDispatch<AppDispatch>()
-
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <div className={style.pokeTable}>
@@ -42,7 +41,12 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
 
       {/* Delete button */}
       <div className={style.pokeTable__delete}>
-        <button onClick={() => {dispatch(removeComparePokemon(pokemon.id))}} className={style.pokeTable__deleteButton}>
+        <button
+          onClick={() => {
+            dispatch(removeComparePokemon(pokemon.id));
+          }}
+          className={style.pokeTable__deleteButton}
+        >
           <img src={deleteIcon} alt='delete' className={style.pokeTable__deleteIcon} />
         </button>
       </div>
@@ -132,4 +136,3 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
     </div>
   );
 };
-
