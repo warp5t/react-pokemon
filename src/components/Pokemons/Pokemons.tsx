@@ -4,7 +4,7 @@ import comparison from '../../assets/icon/arrows.png';
 import { Link } from 'react-router-dom';
 import { capitalizing } from '../../utils/capitalizer';
 import { PokeCardProps } from './pokemonsTyoe';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../slicers/pokeFavorite/pokeFavorite';
 import { AppDispatch, RootState } from '../../store/store';
@@ -21,14 +21,9 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
   const pokeFavorites = useSelector((state: RootState) => state.pokeFavorites.pokemons);
   const isFavorite = pokeFavorites.some((pokemon) => pokemon.name === name);
   const pokeCompareData = useSelector((state: RootState) => state.pokeCompare.data);
-  const pokeErrorCompare = useSelector((state: RootState) => state.pokeCompare.error);
   const isCompare = useSelector((state: RootState) =>
     state.pokeCompare.data.some((pokemon) => pokemon.name === name),
   );
-
-  useEffect(() => {
-    console.log('link is changed: ', pokeErrorCompare);
-  }, [pokeErrorCompare]);
 
   const toggleFavorite = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

@@ -64,15 +64,12 @@ export const PaginationPoke = () => {
   const currentPage = useSelector((state: RootState) => state.pokeList.data.currentPage);
   const ammountPokes = useSelector((state: RootState) => state.pokeList.data.count);
   const ammountPages = Math.ceil(ammountPokes / 20);
-
-  const pageInfo = useSelector((state: RootState) => state.pokeList.data);
   const dispatch = useDispatch<AppDispatch>();
 
   const setNext = () => {
     if (nextPage) {
       dispatch(getPagePokeThunks({ url: nextPage, actionType: 'next' }));
     }
-    console.log('page: ', pageInfo);
   };
 
   const setPrevious = () => {
