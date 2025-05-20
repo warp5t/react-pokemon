@@ -1,14 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PokemonFavor, InitialState } from "./pokeFavoriteType";
-
-const initialState: InitialState = {
-  pokemons: [
-    { name: 'bulbasaur', id: 1 },
-    { name: 'ivysaur', id: 2 }
-  ],
-  isLoading: false,
-  error: null,
-};
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PokemonFavor } from './pokeFavoriteType';
+import { initialState } from './pokeFavoriteType';
 
 const pokeFavoriteSlice = createSlice({
   name: 'favoriteList',
@@ -16,7 +8,7 @@ const pokeFavoriteSlice = createSlice({
   reducers: {
     addFavorite(state, action: PayloadAction<PokemonFavor>) {
       const existingPokemon = state.pokemons.find(
-        pokemon => pokemon.id === action.payload.id || pokemon.name === action.payload.name
+        (pokemon) => pokemon.id === action.payload.id || pokemon.name === action.payload.name,
       );
       if (!existingPokemon) {
         state.pokemons.push(action.payload);
@@ -24,9 +16,9 @@ const pokeFavoriteSlice = createSlice({
     },
     removeFavorite(state, action: PayloadAction<PokemonFavor>) {
       state.pokemons = state.pokemons.filter(
-        pokemon => pokemon.id !== action.payload.id && pokemon.name !== action.payload.name
+        (pokemon) => pokemon.id !== action.payload.id && pokemon.name !== action.payload.name,
       );
-    }
+    },
   },
 });
 

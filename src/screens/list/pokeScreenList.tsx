@@ -1,27 +1,48 @@
-import { useEffect } from 'react';
-import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeSlice/pokeSlice';
+import { useEffect, useState } from 'react';
+import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeList/pokeSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import style from '../list/Pokemons.module.css';
 import { RootState, AppDispatch  } from '../../store/store';
 import { PokeCard } from '../../components/Pokemons/Pokemons';
+import { Modal } from '../../components/Modal/Modal';
 
 export const PokemonsContainerScreen = () => {
   const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeList.isLoading);
   const selectDataPoke = useSelector((state: RootState) => state.pokeList.data.results || []);
   const error = useSelector((state: RootState) => state.pokeList.error);
   const dispatch = useDispatch<AppDispatch>();
+  const isInitialLoaded = useSelector((state: RootState) => state.pokeList.isInitialLoaded);
+  const [showModal, setShowModal] = useState(false);
+  const pokeErrorCompare = useSelector((state: RootState) => state.pokeCompare.error);
+  const lengthComparePoke = useSelector((state: RootState) => state.pokeFavorites.pokemons.length);
+
+  const modalSwitch = () => {
+    setShowModal((showModal) => !showModal);
+    const body = document.getElementById('body');
+    body?.classList.toggle(style.scrollStop);
+  };
+  useEffect(() => {
+    if (!isInitialLoaded) {
+      dispatch(getInitialPokeThunks());
+    }
+  }, []);
 
   useEffect(() => {
-    dispatch(getInitialPokeThunks());
-  }, []);
+    if (lengthComparePoke === 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
+      modalSwitch();
+    }
+  }, [pokeErrorCompare]);
 
   if (selectIsPokemonsLoading) {
     return <p>Loading pokemons...</p>;
   }
-  if (error) return <p>Error: {error}</p>;
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <>
+      <div>{showModal && <Modal toggle={modalSwitch} />}</div>
       <div className={style.pokemons}>
         {selectDataPoke.map((poke) => (
           <PokeCard
@@ -42,7 +63,6 @@ export const PaginationPoke = () => {
   const currentPage = useSelector((state: RootState) => state.pokeList.data.currentPage);
   const ammountPokes = useSelector((state: RootState) => state.pokeList.data.count);
   const ammountPages = Math.ceil(ammountPokes / 20);
-
   const dispatch = useDispatch<AppDispatch>();
 
   const setNext = () => {

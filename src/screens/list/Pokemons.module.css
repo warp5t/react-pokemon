@@ -17,3 +17,7 @@
 .pokemons__paginationBtn {
   width: 130px;
 }
+
+.scrollStop {
+  overflow: hidden;
+}

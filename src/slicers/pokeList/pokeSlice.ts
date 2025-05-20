@@ -6,6 +6,14 @@ export const getInitialPokeThunks = createAsyncThunk('pokeList/fetchInitial', as
   return await response.json();
 });
 
+export const getSamePageThunks = createAsyncThunk(
+  'pokeList/fetchSamePage',
+  async ({ url }: { url: string }) => {
+    const response = await fetch(url);
+    return await response.json();
+  },
+);
+
 export const getPagePokeThunks = createAsyncThunk(
   'pokeList/fetchPage',
   async ({ url }: { url: string; actionType: 'next' | 'previous' }) => {
@@ -26,6 +34,7 @@ const pokeListSlice = createSlice({
       })
       .addCase(getInitialPokeThunks.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isInitialLoaded = true;
         state.data = {
           count: action.payload.count,
           next: action.payload.next,
@@ -38,6 +47,7 @@ const pokeListSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message || 'Unknown error';
       })
+      // --------------------- pokeThunks ----------------------
       .addCase(getPagePokeThunks.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -56,6 +66,25 @@ const pokeListSlice = createSlice({
         };
       })
       .addCase(getPagePokeThunks.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || 'Unknown error';
+      })
+      //------------------------------ samePage ---------------------
+      .addCase(getSamePageThunks.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getSamePageThunks.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data = {
+          count: action.payload.count,
+          next: action.payload.next,
+          previous: action.payload.previous,
+          results: action.payload.results,
+          currentPage: state.data.currentPage,
+        };
+      })
+      .addCase(getSamePageThunks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Unknown error';
       });
