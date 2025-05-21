@@ -15,15 +15,18 @@ export const FavoritePokes = () => {
 
   useEffect(() => {
     if (lengthComparePoke >= 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
-      modalSwitch(setShowModal, showModal)
+      modalSwitch(setShowModal, showModal);
     }
-
   }, [pokeErrorCompare]);
 
   return (
     <div className={style.favorites}>
       {showModal && <Modal toggle={() => modalSwitch(setShowModal, showModal)} />}
-      <button onClick={() => { modalSwitch(setShowModal, showModal)}}></button>
+      <button
+        onClick={() => {
+          modalSwitch(setShowModal, showModal);
+        }}
+      ></button>
       <h2>Favorites</h2>
       <div className={style.favorites__container}>
         {favoritesPoke.pokemons.map((poke) => (

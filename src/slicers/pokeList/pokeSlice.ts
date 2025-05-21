@@ -21,7 +21,7 @@ const pokeListSlice = createSlice({
   name: 'pokeList',
   initialState,
   reducers: {
-     setInitialData(state, action) {
+    setInitialData(state, action) {
       state.data = {
         count: action.payload.count,
         next: action.payload.next,

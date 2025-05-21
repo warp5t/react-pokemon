@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import { getPagePokeThunks, setInitialData } from '../../slicers/pokeList/pokeSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, selectPokeList, selectPokeFavorites, selectPokeCompare } from '../../store/store';
+import {
+  AppDispatch,
+  selectPokeList,
+  selectPokeFavorites,
+  selectPokeCompare,
+} from '../../store/store';
 import style from '../list/Pokemons.module.css';
 import { PokeCard } from '../../components/Pokemons/Pokemons';
 import { Modal } from '../../components/Modal/Modal';
@@ -20,14 +25,14 @@ export const PokemonsContainerScreen = () => {
   const lengthComparePoke = useSelector(selectPokeFavorites).pokemons.length;
 
   useEffect(() => {
-  if (data && !isInitialLoaded) {
-    dispatch(setInitialData(data));
-  }
-}, [data]);
+    if (data && !isInitialLoaded) {
+      dispatch(setInitialData(data));
+    }
+  }, [data]);
 
   useEffect(() => {
     if (lengthComparePoke >= 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
-      modalSwitch(setShowModal, showModal );
+      modalSwitch(setShowModal, showModal);
       console.log('lengthComparePoke: ', lengthComparePoke);
     }
   }, [pokeErrorCompare]);
@@ -39,27 +44,29 @@ export const PokemonsContainerScreen = () => {
     return <p>Error: {'message' in error ? error.message : 'Unknown error'}</p>;
   }
   if (errorSlice) {
-    return <p>Error: {errorSlice}</p>
+    return <p>Error: {errorSlice}</p>;
   }
 
   return (
     <>
       {showModal && <Modal toggle={() => modalSwitch(setShowModal, showModal)} />}
       <div className={style.pokemons}>
-        {!isInitialLoaded && data?.results?.map((poke) => (
-          <PokeCard
-            key={poke.name}
-            name={poke.name}
-            id={Number(poke.url.split('/').filter(Boolean).pop() || '0')}
-          />
-        ))}
-        {isInitialLoaded && selectDataPoke.map((poke) => (
-          <PokeCard
-            key={poke.name}
-            name={poke.name}
-            id={Number(poke.url.split('/').filter(Boolean).pop() || '0')}
-          />
-        ))}
+        {!isInitialLoaded &&
+          data?.results?.map((poke) => (
+            <PokeCard
+              key={poke.name}
+              name={poke.name}
+              id={Number(poke.url.split('/').filter(Boolean).pop() || '0')}
+            />
+          ))}
+        {isInitialLoaded &&
+          selectDataPoke.map((poke) => (
+            <PokeCard
+              key={poke.name}
+              name={poke.name}
+              id={Number(poke.url.split('/').filter(Boolean).pop() || '0')}
+            />
+          ))}
       </div>
       <PaginationPoke />
     </>
@@ -67,7 +74,7 @@ export const PokemonsContainerScreen = () => {
 };
 
 export const PaginationPoke = () => {
-  const nextPage = useSelector((selectPokeList)).data.next;
+  const nextPage = useSelector(selectPokeList).data.next;
   const previousPage = useSelector(selectPokeList).data.previous;
   const currentPage = useSelector(selectPokeList).data.currentPage;
   const ammountPokes = useSelector(selectPokeList).data.count;

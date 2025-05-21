@@ -7,7 +7,7 @@ export const firstPage = createApi({
   endpoints: (builder) => ({
     getPosts: builder.query<DataPoke, void>({
       query: () => '/pokemon-species',
-    })
+    }),
   }),
 });
 
