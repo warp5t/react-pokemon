@@ -13,7 +13,7 @@ export const CompareScreen = () => {
       <h2 className={style.compareSreen__title}>Compare Pokemons</h2>
       <div className={style.compareSreen__cardBox}>
         {comparePokemons.map((poke) => (
-          <PokeStatTable pokemon={poke} key={poke.id} />
+          <PokeStatTable pokemon={poke} key={`${poke.id}_${poke.name}`} />
         ))}
       </div>
     </div>
@@ -54,9 +54,9 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
       {/* Types pokemon's */}
       <div className={style.pokeTable__types}>
         {pokemon.types.map((typeObj) => (
-          <span key={pokemon.id} className={style.pokeTable__type}>
-            {capitalizing(typeObj.type.name)}
-          </span>
+           <span key={`${pokemon.id}_${typeObj.type.name}`} className={style.pokeTable__type}>
+      {capitalizing(typeObj.type.name)}
+    </span>
         ))}
       </div>
 
