@@ -2,9 +2,8 @@ import { Link } from 'react-router-dom';
 import styles from '../../components/Header/Header.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AppDispatch } from '../../store/store';
 import { getSamePageThunks } from '../../slicers/pokeList/pokeSlice';
-import { selectPokeList } from '../../store/store';
+import { selectPokeList, AppDispatch } from '../../store/store';
 
 export const Header = () => {
   const nextPage = useSelector(selectPokeList).data.next;
