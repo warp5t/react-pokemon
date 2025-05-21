@@ -10,10 +10,6 @@ import { addFavorite, removeFavorite } from '../../slicers/pokeFavorite/pokeFavo
 import { getComparePokeThunks, removeComparePokemon } from '../../slicers/pokeCompare/compareSlice';
 import { AppDispatch, selectPokeFavorites, selectPokeCompare } from '../../store/store';
 
-const logging = (name: string) => {
-  console.log(name);
-};
-
 export const PokeCard = ({ name, id }: PokeCardProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -48,10 +44,7 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
     <Link
       to={`/details/${name}`}
       className={style.pokemons__item}
-      onClick={() => {
-        logging(name);
-      }}
-    >
+     >
       <div className={style.pokemons__wrapTitle}>
         <h3>{capitalizing(name)}</h3>
         <div>#{id}</div>

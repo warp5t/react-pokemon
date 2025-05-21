@@ -7,8 +7,6 @@ import { PokeCard } from '../../components/Pokemons/Pokemons';
 import { Modal } from '../../components/Modal/Modal';
 import { useGetPostsQuery } from '../../firstPageApi/firstPageApi';
 import { setInitialData } from '../../slicers/pokeList/pokeSlice';
-// import { DataPoke, PokeResults } from '../../slicers/pokeList/pokeSlicerType';
-// import { getInitialPokeThunks } from '../../slicers/pokeList/pokeSlice';
 
 export const PokemonsContainerScreen = () => {
   const selectIsPokemonsLoading = useSelector(selectPokeList).isLoading;
@@ -33,7 +31,6 @@ export const PokemonsContainerScreen = () => {
   }
 }, [data]);
 
-  console.log('data: ', data);
   useEffect(() => {
     if (lengthComparePoke === 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
       modalSwitch();
@@ -87,7 +84,6 @@ export const PaginationPoke = () => {
     if (nextPage) {
       dispatch(getPagePokeThunks({ url: nextPage, actionType: 'next' }));
     }
-    console.log('pokeList: ', pokeList);
   };
 
   const setPrevious = () => {

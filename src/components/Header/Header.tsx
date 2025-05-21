@@ -24,7 +24,6 @@ export const Header = () => {
     const newOffset = Math.max(0, currentOffset - 20);
     params.set('offset', String(newOffset));
     urlObj.search = params.toString();
-    console.log(urlObj.toString());
 
     dispatch(getSamePageThunks({ url: urlObj.toString() }));
     navigate('/');
