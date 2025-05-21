@@ -7,9 +7,8 @@ import { PokeCardProps } from './pokemonsTyoe';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../slicers/pokeFavorite/pokeFavorite';
-import { AppDispatch, RootState } from '../../store/store';
-import { getComparePokeThunks } from '../../slicers/pokeCompare/compareSlice';
-import { removeComparePokemon } from '../../slicers/pokeCompare/compareSlice';
+import { getComparePokeThunks, removeComparePokemon } from '../../slicers/pokeCompare/compareSlice';
+import { AppDispatch, selectPokeFavorites, selectPokeCompare } from '../../store/store';
 
 const logging = (name: string) => {
   console.log(name);
@@ -18,12 +17,10 @@ const logging = (name: string) => {
 export const PokeCard = ({ name, id }: PokeCardProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const pokeFavorites = useSelector((state: RootState) => state.pokeFavorites.pokemons);
+  const pokeFavorites = useSelector(selectPokeFavorites).pokemons;
   const isFavorite = pokeFavorites.some((pokemon) => pokemon.name === name);
-  const pokeCompareData = useSelector((state: RootState) => state.pokeCompare.data);
-  const isCompare = useSelector((state: RootState) =>
-    state.pokeCompare.data.some((pokemon) => pokemon.name === name),
-  );
+  const pokeCompareData = useSelector(selectPokeCompare).data;
+  const isCompare = useSelector(selectPokeCompare).data.some((pokemon) => pokemon.name === name);
 
   const toggleFavorite = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

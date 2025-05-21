@@ -2,12 +2,12 @@ import { TablePoke } from './comparisonType';
 import deleteIcon from '../../assets/icon/delete.png';
 import style from '../../screens/comparison/Comparision.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
+import { AppDispatch, selectPokeCompare } from '../../store/store';
 import { removeComparePokemon } from '../../slicers/pokeCompare/compareSlice';
 import { capitalizing } from '../../utils/capitalizer';
 
 export const CompareScreen = () => {
-  const comparePokemons = useSelector((state: RootState) => state.pokeCompare.data);
+  const comparePokemons = useSelector(selectPokeCompare).data;
   return (
     <div className={style.compareSreen}>
       <h2 className={style.compareSreen__title}>Compare Pokemons</h2>
