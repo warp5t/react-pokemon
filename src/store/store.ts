@@ -41,6 +41,7 @@ export const store = configureStore({
 export const selectPokeList = (state: RootState) => state.persistedReducer.pokeList;
 export const selectPokeFavorites = (state: RootState) => state.persistedReducer.pokeFavorites;
 export const selectPokeCompare = (state: RootState) => state.persistedReducer.pokeCompare;
+export const selectPokeDetails = (state: RootState) => state.persistedReducer.pokeDetails
 
 export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
