@@ -26,8 +26,9 @@ export const PokemonsContainerScreen = () => {
 }, [data]);
 
   useEffect(() => {
-    if (lengthComparePoke === 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
+    if (lengthComparePoke >= 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
       modalSwitch(setShowModal, showModal );
+      console.log('lengthComparePoke: ', lengthComparePoke);
     }
   }, [pokeErrorCompare]);
 
@@ -43,7 +44,7 @@ export const PokemonsContainerScreen = () => {
 
   return (
     <>
-      <div>{showModal && <Modal toggle={() => modalSwitch(setShowModal, showModal)} />}</div>
+      {showModal && <Modal toggle={() => modalSwitch(setShowModal, showModal)} />}
       <div className={style.pokemons}>
         {!isInitialLoaded && data?.results?.map((poke) => (
           <PokeCard
