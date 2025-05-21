@@ -21,6 +21,7 @@ const rootReducer = combineReducers({
   pokeDetails: pokeDetailsReducer,
   pokeFavorites: favoritesReducer,
   pokeCompare: compareReducer,
+  [firstPage.reducerPath]: firstPage.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

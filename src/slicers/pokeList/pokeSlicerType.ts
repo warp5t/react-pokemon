@@ -10,7 +10,7 @@ interface InfoPoke {
   url: string;
 }
 
-interface DataPoke {
+export interface DataPoke {
   count: number;
   next: string | null;
   previous: null | string;

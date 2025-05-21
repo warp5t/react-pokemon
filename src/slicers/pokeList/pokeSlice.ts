@@ -25,7 +25,18 @@ export const getPagePokeThunks = createAsyncThunk(
 const pokeListSlice = createSlice({
   name: 'pokeList',
   initialState,
-  reducers: {},
+  reducers: {
+     setInitialData(state, action) {
+      state.data = {
+        count: action.payload.count,
+        next: action.payload.next,
+        previous: action.payload.previous,
+        results: action.payload.results,
+        currentPage: 1,
+      };
+      state.isInitialLoaded = true;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getInitialPokeThunks.pending, (state) => {
@@ -92,3 +103,4 @@ const pokeListSlice = createSlice({
 });
 
 export default pokeListSlice.reducer;
+export const { setInitialData } = pokeListSlice.actions;
