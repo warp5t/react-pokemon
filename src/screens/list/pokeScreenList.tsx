@@ -6,7 +6,6 @@ import style from '../list/Pokemons.module.css';
 import { PokeCard } from '../../components/Pokemons/Pokemons';
 import { Modal } from '../../components/Modal/Modal';
 import { useGetPostsQuery } from '../../firstPageApi/firstPageApi';
-// import { setInitialData } from '../../slicers/pokeList/pokeSlice';
 
 export const PokemonsContainerScreen = () => {
   const selectIsPokemonsLoading = useSelector(selectPokeList).isLoading;
@@ -79,7 +78,6 @@ export const PaginationPoke = () => {
   const ammountPages = Math.ceil(ammountPokes / 20);
   const dispatch = useDispatch<AppDispatch>();
 
-  // const pokeList = useSelector((selectPokeList));
   const setNext = () => {
     if (nextPage) {
       dispatch(getPagePokeThunks({ url: nextPage, actionType: 'next' }));
