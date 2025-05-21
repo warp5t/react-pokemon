@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
 import { getInitialPokeThunks, getPagePokeThunks } from '../../slicers/pokeList/pokeSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/store';
-import { AppDispatch } from '../../store/store';
+import { AppDispatch, selectPokeList, selectPokeFavorites, selectPokeCompare } from '../../store/store';
 import style from '../list/Pokemons.module.css';
 import { PokeCard } from '../../components/Pokemons/Pokemons';
 import { Modal } from '../../components/Modal/Modal';
 
 export const PokemonsContainerScreen = () => {
-  const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeList.isLoading);
-  const selectDataPoke = useSelector((state: RootState) => state.pokeList.data.results || []);
-  const error = useSelector((state: RootState) => state.pokeList.error);
+  const selectIsPokemonsLoading = useSelector(selectPokeList).isLoading;
+  const selectDataPoke = useSelector(selectPokeList).data.results || [];
+  const error = useSelector(selectPokeList).error;
   const dispatch = useDispatch<AppDispatch>();
-  const isInitialLoaded = useSelector((state: RootState) => state.pokeList.isInitialLoaded);
+  const isInitialLoaded = useSelector(selectPokeList).isInitialLoaded;
   const [showModal, setShowModal] = useState(false);
-  const pokeErrorCompare = useSelector((state: RootState) => state.pokeCompare.error);
-  const lengthComparePoke = useSelector((state: RootState) => state.pokeFavorites.pokemons.length);
+  const pokeErrorCompare = useSelector(selectPokeCompare).error;
+  const lengthComparePoke = useSelector(selectPokeFavorites).pokemons.length;
 
   const modalSwitch = () => {
     setShowModal((showModal) => !showModal);
@@ -59,10 +58,10 @@ export const PokemonsContainerScreen = () => {
 };
 
 export const PaginationPoke = () => {
-  const nextPage = useSelector((state: RootState) => state.pokeList.data.next);
-  const previousPage = useSelector((state: RootState) => state.pokeList.data.previous);
-  const currentPage = useSelector((state: RootState) => state.pokeList.data.currentPage);
-  const ammountPokes = useSelector((state: RootState) => state.pokeList.data.count);
+  const nextPage = useSelector((selectPokeList)).data.next;
+  const previousPage = useSelector(selectPokeList).data.previous;
+  const currentPage = useSelector(selectPokeList).data.currentPage;
+  const ammountPokes = useSelector(selectPokeList).data.count;
   const ammountPages = Math.ceil(ammountPokes / 20);
   const dispatch = useDispatch<AppDispatch>();
 
