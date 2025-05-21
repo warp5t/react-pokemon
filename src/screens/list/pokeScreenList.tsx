@@ -6,6 +6,7 @@ import style from '../list/Pokemons.module.css';
 import { PokeCard } from '../../components/Pokemons/Pokemons';
 import { Modal } from '../../components/Modal/Modal';
 import { useGetPostsQuery } from '../../firstPageApi/firstPageApi';
+import { modalSwitch } from '../../utils/showModal';
 
 export const PokemonsContainerScreen = () => {
   const selectIsPokemonsLoading = useSelector(selectPokeList).isLoading;
@@ -18,12 +19,6 @@ export const PokemonsContainerScreen = () => {
   const pokeErrorCompare = useSelector(selectPokeCompare).error;
   const lengthComparePoke = useSelector(selectPokeFavorites).pokemons.length;
 
-  const modalSwitch = () => {
-    setShowModal((showModal) => !showModal);
-    const body = document.getElementById('body');
-    body?.classList.toggle(style.scrollStop);
-  };
-
   useEffect(() => {
   if (data && !isInitialLoaded) {
     dispatch(setInitialData(data));
@@ -32,7 +27,7 @@ export const PokemonsContainerScreen = () => {
 
   useEffect(() => {
     if (lengthComparePoke === 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
-      modalSwitch();
+      modalSwitch(setShowModal, showModal );
     }
   }, [pokeErrorCompare]);
 
@@ -48,7 +43,7 @@ export const PokemonsContainerScreen = () => {
 
   return (
     <>
-      <div>{showModal && <Modal toggle={modalSwitch} />}</div>
+      <div>{showModal && <Modal toggle={() => modalSwitch(setShowModal, showModal)} />}</div>
       <div className={style.pokemons}>
         {!isInitialLoaded && data?.results?.map((poke) => (
           <PokeCard
