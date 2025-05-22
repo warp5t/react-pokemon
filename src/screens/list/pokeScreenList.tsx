@@ -33,7 +33,6 @@ export const PokemonsContainerScreen = () => {
   useEffect(() => {
     if (lengthComparePoke >= 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
       modalSwitch(setShowModal, showModal);
-      console.log('lengthComparePoke: ', lengthComparePoke);
     }
   }, [pokeErrorCompare]);
 

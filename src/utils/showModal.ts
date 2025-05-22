@@ -9,5 +9,4 @@ export const modalSwitch = (
   }
   const body = document.getElementById('body');
   body?.classList.toggle(style.scrollStop);
-  console.log('modalSwitch');
 };
