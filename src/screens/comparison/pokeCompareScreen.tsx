@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, selectPokeCompare } from '../../store/store';
 import { removeComparePokemon } from '../../slicers/pokeCompare/compareSlice';
 import { capitalizing } from '../../utils/capitalizer';
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from 'react';
 
 export const CompareScreen = () => {
   const comparePokemons = useSelector(selectPokeCompare).data;
@@ -25,9 +27,16 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
   const formatWeight = (weight: number) => (weight / 10).toFixed(1);
   const formatHeight = (height: number) => (height / 10).toFixed(1);
   const dispatch = useDispatch<AppDispatch>();
+  const [isVisible, setIsVisible] = useState(true);
 
   return (
-    <div className={style.pokeTable}>
+   <>
+       <AnimatePresence>
+        {isVisible && (
+    <motion.div initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}className={style.pokeTable}>
       {/* Header with name and ID */}
       <div className={style.pokeTable__header}>
         <h2 className={style.pokeTable__name}>{capitalizing(pokemon.name)}</h2>
@@ -43,7 +52,8 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
       <div className={style.pokeTable__delete}>
         <button
           onClick={() => {
-            dispatch(removeComparePokemon(pokemon.id));
+            setIsVisible((isVisible) => !isVisible)
+            setTimeout(() => dispatch(removeComparePokemon(pokemon.id)), 500)
           }}
           className={style.pokeTable__deleteButton}
         >
@@ -104,7 +114,7 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
             <div
               className={style.pokeTable__statBarFill}
               style={{ width: `${(pokemon.stats.defense / 255) * 100}%` }}
-            ></div>
+              ></div>
           </div>
           <span className={style.pokeTable__value}>{formatStat(pokemon.stats.defense)}</span>
         </div>
@@ -133,6 +143,9 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
           ))}
         </ul>
       </div>
-    </div>
+    </motion.div>
+        )}
+        </AnimatePresence>
+              </>
   );
 };

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../slicers/pokeFavorite/pokeFavorite';
 import { getComparePokeThunks, removeComparePokemon } from '../../slicers/pokeCompare/compareSlice';
 import { AppDispatch, selectPokeFavorites, selectPokeCompare } from '../../store/store';
+import { motion } from 'framer-motion';
 
 export const PokeCard = ({ name, id }: PokeCardProps) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -47,12 +48,30 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
         <div>#{id}</div>
       </div>
       <div className={style.pokemons__wrapButton}>
-        <button onClick={toggleFavorite} className={isFavorite ? style.pokemons__btn_active : ''}>
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={toggleFavorite}
+          className={isFavorite ? style.pokemons__btn_active : ''}
+        >
           <img src={favorites} alt='favorites' />
-        </button>
-        <button onClick={toogleCompare} className={isCompare ? style.pokemons__btn_active1 : ''}>
+        </motion.button>
+        <motion.button
+           whileHover={{
+    y: -3,
+    boxShadow: "0 10px 20px rgba(0,0,0,0.1)"
+  }}
+  whileTap={{
+    y: 0,
+    boxShadow: "0 5px 10px rgba(0,0,0,0.1)"
+  }}
+          onClick={toogleCompare}
+          className={isCompare ? style.pokemons__btn_active1 : ''}
+        >
           <img src={comparison} alt='comparison' />
-        </button>
+        </motion.button>
       </div>
     </Link>
   );
