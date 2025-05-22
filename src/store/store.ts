@@ -6,14 +6,12 @@ import compareReducer from '../slicers/pokeCompare/compareSlice';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { firstPage } from '../firstPageApi/firstPageApi';
-// import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
 const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['pokeCompare'],
   blacklist: ['pokeList', 'pokeDetails', 'pokeFavorites'],
-  // stateReconciler: hardSet,
 };
 
 const rootReducer = combineReducers({
