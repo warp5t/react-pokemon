@@ -59,14 +59,14 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
           <img src={favorites} alt='favorites' />
         </motion.button>
         <motion.button
-           whileHover={{
-    y: -3,
-    boxShadow: "0 10px 20px rgba(0,0,0,0.1)"
-  }}
-  whileTap={{
-    y: 0,
-    boxShadow: "0 5px 10px rgba(0,0,0,0.1)"
-  }}
+          whileHover={{
+            y: -3,
+            boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+          }}
+          whileTap={{
+            y: 0,
+            boxShadow: '0 5px 10px rgba(0,0,0,0.1)',
+          }}
           onClick={toogleCompare}
           className={isCompare ? style.pokemons__btn_active1 : ''}
         >

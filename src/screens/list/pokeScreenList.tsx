@@ -12,8 +12,8 @@ import { PokeCard } from '../../components/Pokemons/Pokemons';
 import { Modal } from '../../components/Modal/Modal';
 import { useGetPostsQuery } from '../../firstPageApi/firstPageApi';
 import { modalSwitch } from '../../utils/showModal';
-import { motion } from "framer-motion";
-import { FaHourglassHalf } from "react-icons/fa";
+import { motion } from 'framer-motion';
+import { FaHourglassHalf } from 'react-icons/fa';
 
 export const PokemonsContainerScreen = () => {
   const selectIsPokemonsLoading = useSelector(selectPokeList).isLoading;
@@ -39,12 +39,11 @@ export const PokemonsContainerScreen = () => {
   }, [pokeErrorCompare]);
 
   if (isLoading || selectIsPokemonsLoading) {
-    return <motion.div
-  animate={{ rotate: 180 }}
-  transition={{ repeat: Infinity, duration: 1.5 }}
->
-  <FaHourglassHalf size={44} />
-</motion.div>
+    return (
+      <motion.div animate={{ rotate: 180 }} transition={{ repeat: Infinity, duration: 1.5 }}>
+        <FaHourglassHalf size={44} />
+      </motion.div>
+    );
   }
   if (error) {
     return <p>Error: {'message' in error ? error.message : 'Unknown error'}</p>;
