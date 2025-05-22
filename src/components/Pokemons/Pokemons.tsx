@@ -12,6 +12,7 @@ import { AppDispatch, selectPokeFavorites, selectPokeCompare } from '../../store
 import { motion } from 'framer-motion';
 
 export const PokeCard = ({ name, id }: PokeCardProps) => {
+
   const dispatch = useDispatch<AppDispatch>();
 
   const pokeFavorites = useSelector(selectPokeFavorites).pokemons;

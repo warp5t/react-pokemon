@@ -31,15 +31,22 @@ export const PokeDetailsScreen = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getDetailsPokeThunks({ url: `https://pokeapi.co/api/v2/pokemon/${pokemonName}/` }));
-  }, [pokemonName]);
+    if (pokemonName) {
+      dispatch(getDetailsPokeThunks({ url: `https://pokeapi.co/api/v2/pokemon/${pokemonName}/` }));
+    }
+  }, [pokemonName, dispatch]);
 
-  if (!!error) {
-    return <div>Покемон не найден!</div>;
-  }
-  if (selectIsPokemonsLoading) {
-    return <p>Loading pokemons...</p>;
-  }
+  if (error) return <div>Покемон не найден!</div>;
+  if (selectIsPokemonsLoading) return <p>Loading pokemon...</p>;
+
+  useEffect(() => {
+    if (pokemonName) {
+      dispatch(getDetailsPokeThunks({ url: `https://pokeapi.co/api/v2/pokemon/${pokemonName}/` }));
+    }
+  }, [pokemonName, dispatch]);
+
+  if (error) return <div>Покемон не найден!</div>;
+  if (selectIsPokemonsLoading) return <p>Loading pokemon...</p>;
 
   return (
     <div className={style.details}>

@@ -7,7 +7,9 @@ import {
   selectPokeFavorites,
   selectPokeCompare,
 } from '../../store/store';
+
 import style from '../list/Pokemons.module.css';
+import { RootState, AppDispatch  } from '../../store/store';
 import { PokeCard } from '../../components/Pokemons/Pokemons';
 import { Modal } from '../../components/Modal/Modal';
 import { useGetPostsQuery } from '../../firstPageApi/firstPageApi';
