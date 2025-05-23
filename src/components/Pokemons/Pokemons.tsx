@@ -45,7 +45,7 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
   return (
     <Link to={`/details/${name}`} className={style.pokemons__item}>
       <div className={style.pokemons__wrapTitle}>
-        <h3>{capitalizing(name)}</h3>
+        <h4>{capitalizing(name)}</h4>
         <div>#{id}</div>
       </div>
       <div className={style.pokemons__wrapButton}>
