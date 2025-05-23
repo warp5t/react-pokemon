@@ -5,8 +5,7 @@ import { useParams } from 'react-router-dom';
 import { capitalizing } from '../../utils/capitalizer';
 import { getDetailsPokeThunks } from '../../slicers/pokeDetails/detailsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
-
+import { AppDispatch, selectPokeDetails } from '../../store/store';
 
 export const PokeDetails: FC<PokeStat> = ({ name, height, weight, sprite, id }) => {
   return (
@@ -26,9 +25,9 @@ export const PokeDetails: FC<PokeStat> = ({ name, height, weight, sprite, id }) 
 
 export const PokeDetailsScreen = () => {
   const { pokemonName } = useParams<{ pokemonName: string | undefined }>();
-  const selectIsPokemonsLoading = useSelector((state: RootState) => state.pokeDetails.isLoading);
-  const selectDetailPoke = useSelector((state: RootState) => state.pokeDetails.data);
-  const error = useSelector((state: RootState) => state.pokeDetails.error);
+  const selectIsPokemonsLoading = useSelector(selectPokeDetails).isLoading;
+  const selectDetailPoke = useSelector(selectPokeDetails).data;
+  const error = useSelector(selectPokeDetails).error;
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {

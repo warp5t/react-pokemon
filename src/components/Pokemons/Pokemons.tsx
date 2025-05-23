@@ -7,24 +7,18 @@ import { PokeCardProps } from './pokemonsTyoe';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../slicers/pokeFavorite/pokeFavorite';
-import { AppDispatch, RootState } from '../../store/store';
-import { getComparePokeThunks } from '../../slicers/pokeCompare/compareSlice';
-import { removeComparePokemon } from '../../slicers/pokeCompare/compareSlice';
-
-const logging = (name: string) => {
-  console.log(name);
-};
+import { getComparePokeThunks, removeComparePokemon } from '../../slicers/pokeCompare/compareSlice';
+import { AppDispatch, selectPokeFavorites, selectPokeCompare } from '../../store/store';
+import { motion } from 'framer-motion';
 
 export const PokeCard = ({ name, id }: PokeCardProps) => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const pokeFavorites = useSelector((state: RootState) => state.pokeFavorites.pokemons);
+  const pokeFavorites = useSelector(selectPokeFavorites).pokemons;
   const isFavorite = pokeFavorites.some((pokemon) => pokemon.name === name);
-  const pokeCompareData = useSelector((state: RootState) => state.pokeCompare.data);
-  const isCompare = useSelector((state: RootState) =>
-    state.pokeCompare.data.some((pokemon) => pokemon.name === name),
-  );
+  const pokeCompareData = useSelector(selectPokeCompare).data;
+  const isCompare = useSelector(selectPokeCompare).data.some((pokemon) => pokemon.name === name);
 
   const toggleFavorite = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -49,24 +43,36 @@ export const PokeCard = ({ name, id }: PokeCardProps) => {
   };
 
   return (
-    <Link
-      to={`/details/${name}`}
-      className={style.pokemons__item}
-      onClick={() => {
-        logging(name);
-      }}
-    >
+    <Link to={`/details/${name}`} className={style.pokemons__item}>
       <div className={style.pokemons__wrapTitle}>
         <h3>{capitalizing(name)}</h3>
         <div>#{id}</div>
       </div>
       <div className={style.pokemons__wrapButton}>
-        <button onClick={toggleFavorite} className={isFavorite ? style.pokemons__btn_active : ''}>
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={toggleFavorite}
+          className={isFavorite ? style.pokemons__btn_active : ''}
+        >
           <img src={favorites} alt='favorites' />
-        </button>
-        <button onClick={toogleCompare} className={isCompare ? style.pokemons__btn_active1 : ''}>
+        </motion.button>
+        <motion.button
+          whileHover={{
+            y: -3,
+            boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+          }}
+          whileTap={{
+            y: 0,
+            boxShadow: '0 5px 10px rgba(0,0,0,0.1)',
+          }}
+          onClick={toogleCompare}
+          className={isCompare ? style.pokemons__btn_active1 : ''}
+        >
           <img src={comparison} alt='comparison' />
-        </button>
+        </motion.button>
       </div>
     </Link>
   );

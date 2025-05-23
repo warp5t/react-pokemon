@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import styles from '../../components/Header/Header.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AppDispatch, RootState } from '../../store/store';
 import { getSamePageThunks } from '../../slicers/pokeList/pokeSlice';
+import { selectPokeList, AppDispatch } from '../../store/store';
 
 export const Header = () => {
-  const nextPage = useSelector((state: RootState) => state.pokeList.data.next);
+  const nextPage = useSelector(selectPokeList).data.next;
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -23,7 +23,6 @@ export const Header = () => {
     const newOffset = Math.max(0, currentOffset - 20);
     params.set('offset', String(newOffset));
     urlObj.search = params.toString();
-    console.log(urlObj.toString());
 
     dispatch(getSamePageThunks({ url: urlObj.toString() }));
     navigate('/');

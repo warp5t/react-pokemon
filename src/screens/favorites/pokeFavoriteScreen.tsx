@@ -1,13 +1,32 @@
 import { PokeCard } from '../../components/Pokemons/Pokemons';
-import { RootState } from '../../store/store';
+import { selectPokeFavorites } from '../../store/store';
 import style from '../../screens/favorites/Favorites.module.css';
 import { useSelector } from 'react-redux';
+import { Modal } from '../../components/Modal/Modal';
+import { useState, useEffect } from 'react';
+import { modalSwitch } from '../../utils/showModal';
+import { selectPokeCompare } from '../../store/store';
 
 export const FavoritePokes = () => {
-  const favoritesPoke = useSelector((state: RootState) => state.pokeFavorites);
+  const favoritesPoke = useSelector(selectPokeFavorites);
+  const [showModal, setShowModal] = useState(false);
+  const pokeErrorCompare = useSelector(selectPokeCompare).error;
+  const lengthComparePoke = useSelector(selectPokeFavorites).pokemons.length;
+
+  useEffect(() => {
+    if (lengthComparePoke >= 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
+      modalSwitch(setShowModal, showModal);
+    }
+  }, [pokeErrorCompare]);
 
   return (
     <div className={style.favorites}>
+      {showModal && <Modal toggle={() => modalSwitch(setShowModal, showModal)} />}
+      <button
+        onClick={() => {
+          modalSwitch(setShowModal, showModal);
+        }}
+      ></button>
       <h2>Favorites</h2>
       <div className={style.favorites__container}>
         {favoritesPoke.pokemons.map((poke) => (
