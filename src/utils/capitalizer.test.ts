@@ -14,7 +14,7 @@ describe('capitalizing function', () => {
   it('handles strings with spaces', () => {
     expect(capitalizing(' jim')).toBe(' jim');
   });
-   it('works with special characters', () => {
+  it('works with special characters', () => {
     expect(capitalizing('1hello')).toBe('1hello');
     expect(capitalizing('@test')).toBe('@test');
   });
