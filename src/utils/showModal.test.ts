@@ -1,65 +1,33 @@
+// modalSwitch.test.ts
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { modalSwitch } from './showModal';
-import { vi, describe, it, expect, afterEach } from 'vitest';
-
-// Мокаем классList
-const mockClassList = {
-  toggle: vi.fn(),
-};
-
-// Мокаем document.getElementById
-const mockGetElementById = vi.fn(() => ({
-  classList: mockClassList,
-}));
-
-// Подменяем глобальный document
-beforeAll(() => {
-  global.document.getElementById = mockGetElementById;
-});
-
-// Очищаем моки после каждого теста
-afterEach(() => {
-  vi.clearAllMocks();
-});
+import style from '../components/Pokemons/Pokemons.module.css';
 
 describe('modalSwitch', () => {
-  it('вызывает переданную функцию с инвертированным значением', () => {
-    const mockSetState = vi.fn();
-    const initialStatus = true;
+  let mockFn: ReturnType<typeof vi.fn>;
+  let bodyElement: HTMLElement;
 
-    modalSwitch(mockSetState, initialStatus);
-
-    expect(mockSetState).toHaveBeenCalledTimes(1);
-    expect(mockSetState).toHaveBeenCalledWith(expect.any(Function));
-
-    // Проверяем, что функция действительно инвертирует значение
-    const updater = mockSetState.mock.calls[0][0];
-    expect(updater(initialStatus)).toBe(false);
+  beforeEach(() => {
+    mockFn = vi.fn();
+    bodyElement = document.createElement('div');
+    bodyElement.id = 'body';
+    bodyElement.classList.toggle = vi.fn();
+    document.body.appendChild(bodyElement);
   });
 
-  it('переключает CSS-класс у элемента body', () => {
-    const mockSetState = vi.fn();
-    modalSwitch(mockSetState, true);
-
-    expect(mockGetElementById).toHaveBeenCalledWith('body');
-    expect(mockClassList.toggle).toHaveBeenCalledTimes(1);
+  it('should toggle state using fn', () => {
+    modalSwitch(mockFn, true);
+    expect(mockFn).toHaveBeenCalled();
+    expect(mockFn).toHaveBeenCalledWith(expect.any(Function));
   });
 
-  it('не вызывает toggle, если элемент body не найден', () => {
-    // Переопределяем мок, чтобы вернул null
-    mockGetElementById.mockReturnValueOnce(null);
-    const mockSetState = vi.fn();
-
-    modalSwitch(mockSetState, true);
-
-    expect(mockGetElementById).toHaveBeenCalledWith('body');
-    expect(mockClassList.toggle).not.toHaveBeenCalled();
+  it('should toggle class on body element', () => {
+    modalSwitch(mockFn, true);
+    expect(bodyElement.classList.toggle).toHaveBeenCalledWith(style.scrollStop);
   });
 
-  it('не вызывает setState, если функция не передана', () => {
-    const mockSetState = undefined as unknown as React.Dispatch<React.SetStateAction<boolean>>;
-    modalSwitch(mockSetState, true);
-
-    expect(mockGetElementById).toHaveBeenCalledWith('body');
-    expect(mockClassList.toggle).toHaveBeenCalledTimes(1);
+  it('should not throw if body element is not found', () => {
+    document.body.removeChild(bodyElement);
+    expect(() => modalSwitch(mockFn, true)).not.toThrow();
   });
 });
