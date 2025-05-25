@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { describe, vi, it, beforeEach } from 'vitest';
+import { describe, vi, it, beforeEach, expect } from 'vitest';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { PokeDetailsScreen } from './pokeDetailsScreen';
