@@ -68,7 +68,7 @@ export const PokeStatTable: React.FC<TablePoke> = ({ pokemon }) => {
             <div className={style.pokeTable__types}>
               {pokemon.types.map((typeObj) => (
                 <span key={`${pokemon.id}_${typeObj.type.name}`} className={style.pokeTable__type}>
-                  {capitalizing(typeObj.type.name)}
+                  {capitalizing(typeObj.type.name)} <br />
                 </span>
               ))}
             </div>

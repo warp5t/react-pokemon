@@ -31,6 +31,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 10px;
 }
 
 .compareSreen__title {
@@ -45,63 +46,61 @@
 
 /* ------------------------------------------------ */
 
-.poke-table {
-  max-width: 400px;
+.pokeTable {
   margin: 0 auto;
   padding: 16px;
-  background-color: #fff;
+  background-color: #ffffff2d;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: sans-serif;
 }
 
 /* -------------------------- */
-.poke-table__header {
+.pokeTable__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.poke-table__name {
+.pokeTable__name {
   font-size: 24px;
   font-weight: bold;
 }
 
-.poke-table__id {
+.pokeTable__id {
   font-size: 18px;
   color: #666;
 }
 
 /* ------------------------------------ */
-.poke-table__image-wrapper {
+.pokeTable__imageWrapper {
   text-align: center;
   margin: 16px 0;
 }
 
-.poke-table__image {
-  width: 120px;
-  height: 120px;
+.pokeTable__image {
+ width: 100%;
 }
 
 /* ------------------------------- */
-.poke-table__delete {
+.pokeTable__delete {
   text-align: right;
   margin-bottom: 8px;
 }
 
-.poke-table__delete-button {
+.pokeTable__deleteButton {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-.poke-table__delete-icon {
-  width: 20px;
-  height: 20px;
+.pokeTable__deleteIcon {
+  width: 40px;
+  height: 40px;
 }
 
 /* Типы покемона */
-.poke-table__types {
+.pokeTable__types {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -109,85 +108,94 @@
   margin-bottom: 16px;
 }
 
-.poke-table__type {
+.pokeTable__type {
   padding: 4px 8px;
-  background-color: #eee;
+  background-color: #fd5151;
   border-radius: 8px;
   font-size: 14px;
+  color: #2e3b44;
 }
 
 /* ------------------------------- */
-.poke-table__physical {
+.pokeTable__physical {
   display: flex;
   justify-content: space-around;
   margin-bottom: 16px;
 }
 
-.poke-table__physical-stat {
+.pokeTable__physicaStat {
   text-align: center;
 }
 
-.poke-table__label {
+.pokeTable__label {
   font-weight: bold;
   display: block;
 }
 
-.poke-table__value {
+.pokeTable__value {
   font-size: 14px;
 }
 
 /* ---------------------------------------- */
-.poke-table__stats {
+.pokeTable__stats {
   margin-bottom: 16px;
 }
 
-.poke-table__stats-title {
+.pokeTable__statsTitle {
   font-size: 18px;
   margin-bottom: 8px;
 }
 
-.poke-table__stat-row {
+.pokeTable__statRow {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
 }
 
-.poke-table__stat-name {
+.pokeTable__statName {
+  padding-right: 12px;
   width: 70px;
   font-weight: bold;
 }
 
-.poke-table__stat-bar {
+.pokeTable__statBar {
   flex: 1;
   height: 10px;
-  background-color: #ddd;
+  background-color: #dddddd4f;
   border-radius: 5px;
   overflow: hidden;
   margin: 0 8px;
 }
 
-.poke-table__stat-bar-fill {
+.pokeTable__statBarFill {
   height: 100%;
   background-color: #4caf50;
 }
 
 /* ------------------------------ */
-.poke-table__abilities-title {
+.pokeTable__abilities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pokeTable__abilitiesTitle {
   font-size: 18px;
   margin-bottom: 8px;
+  color: #53cbcf;
 }
 
-.poke-table__abilities-list {
+.pokeTable__abilitiesList {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.poke-table__ability-item {
+.pokeTable__abilityTtem {
   margin-bottom: 4px;
 }
 
-.poke-table__hidden-tag {
+.pokeTable__hiddenTag {
   color: #888;
   margin-left: 4px;
   font-size: 12px;
