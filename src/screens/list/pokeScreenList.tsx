@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getPagePokeThunks, setInitialData } from '../../slicers/pokeList/pokeSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { clearCompareError } from '../../slicers/pokeCompare/compareSlice';
 import {
   AppDispatch,
   selectPokeList,
@@ -36,6 +37,7 @@ export const PokemonsContainerScreen = () => {
   useEffect(() => {
     if (lengthComparePoke >= 2 && pokeErrorCompare === 'Maximum 2 Pokemon for comparison') {
       modalSwitch(setShowModal, showModal);
+      dispatch(clearCompareError());
     }
   }, [pokeErrorCompare]);
 
