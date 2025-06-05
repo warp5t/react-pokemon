@@ -2,11 +2,15 @@ import style from '../components/Pokemons/Pokemons.module.css';
 
 export const modalSwitch = (
   fn: React.Dispatch<React.SetStateAction<boolean>>,
-  _status: boolean,
+  modal: boolean,
 ) => {
   if (fn) {
-    fn((status: boolean) => !status);
+    fn((modal: boolean) => !modal);
   }
   const body = document.getElementById('body');
-  body?.classList.toggle(style.scrollStop);
+  if (modal === false) {
+    body?.classList.remove(style.scrollStop);
+  } else {
+    body?.classList.add(style.scrollStop);
+  }
 };

@@ -41,6 +41,9 @@ const pokeCompareSlice = createSlice({
     removeComparePokemon: (state, action: PayloadAction<number>) => {
       state.data = state.data.filter((pokemon) => pokemon.id !== action.payload);
     },
+    clearCompareError: (state) => {
+      state.error = null;
+  }
   },
   extraReducers: (builder) => {
     builder
@@ -71,6 +74,6 @@ const pokeCompareSlice = createSlice({
   },
 });
 
-export const { removeComparePokemon } = pokeCompareSlice.actions;
+export const { removeComparePokemon, clearCompareError } = pokeCompareSlice.actions;
 
 export default pokeCompareSlice.reducer;
