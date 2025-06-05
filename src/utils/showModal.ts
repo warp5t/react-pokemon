@@ -1,4 +1,4 @@
-import style from '../components/Pokemons/Pokemons.module.css';
+import style from './stopScroll.module.css';
 
 export const modalSwitch = (
   fn: React.Dispatch<React.SetStateAction<boolean>>,
