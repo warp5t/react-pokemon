@@ -16,6 +16,7 @@
 }
 .pokemons__paginationBtn {
   width: 130px;
+  background-color: rgb(89, 90, 92);
 }
 
 .scrollStop {

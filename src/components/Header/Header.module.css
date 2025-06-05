@@ -10,6 +10,11 @@
   width: inherit;
   padding: 20px 30px;
 }
+@media (max-width: 370px) {
+  .header__wrap {
+     padding: 20px 10px;
+    }
+}
 .header__wrapButton {
   display: flex;
   justify-content: space-between;
@@ -23,8 +28,8 @@
 
 .header__btn {
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  background-color: #25a4d6;
+  color: rgb(221, 252, 212);
   border: none;
   border-radius: 8px;
   text-decoration: none;
@@ -33,7 +38,10 @@
   display: inline-block;
   text-align: center;
 }
+.header__btn:not(:last-child) {
+  margin: 0 10px 0 0;
+}
 
 .header__btn:hover {
-  background-color: #0056b3;
+  background-color: #b184e4;
 }

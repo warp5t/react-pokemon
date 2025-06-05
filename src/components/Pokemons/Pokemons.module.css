@@ -8,6 +8,11 @@
   border-radius: 8px;
   margin: 6px;
 }
+@media (max-width: 1150px) {
+  .pokemons__item {
+    width: 35%;
+  }
+}
 @media (max-width: 690px) {
   .pokemons__item {
     width: 80%;
